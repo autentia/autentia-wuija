@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:tnt="http://www.autentia.com/frmwrk/component">
+
+	<ui:component>
+		<ice:panelGroup styleClass="dataTableWidget">
+
+			<div class="dataTableWidgetHeaderOptions">
+				<tnt:widget childWidget="#{widget.csvExport}" />
+			</div>
+
+			<ice:dataTable id="#{widget.id}" var="entity" value="#{widget.entities}" binding="#{widget.jsfDataTable}"
+				rows="#{widget.pageSize}" sortColumn="#{widget.sortColumn}" sortAscending="#{widget.sortAscending}" resizable="true"
+				styleClass="dataTableListWidget">
+
+				<c:if test="#{widget.multipleSelectionMode}">
+					<ice:column styleClass="multipleSelectionMode">
+						<f:facet name="header">
+							<ice:selectBooleanCheckbox id="selectAllEntities" value="#{widget.selectAllEntities}" partialSubmit="true" 
+								immediate="true" valueChangeListener="#{widget.selectAllEntitiesListener}" /> 
+						</f:facet>
+						<ice:selectBooleanCheckbox value="#{widget.entitiesSelected[entity]}" partialSubmit="true" 
+							immediate="true" valueChangeListener="#{widget.selectEntityListener}"/>
+					</ice:column>
+				</c:if>
+
+				<c:forEach var="property" items="#{widget.properties}" varStatus="loopStatus">
+					<ice:column>
+
+						<c:if test="#{loopStatus.first and widget.selectable}">
+							<ice:rowSelector multiple="false" selectionAction="#{widget.selectionAction}" immediate="true" toggleOnInput="false"/>
+						</c:if>
+						<f:facet name="header">
+							<c:choose>
+								<c:when test="#{widget.sortable}">
+									<ice:commandSortHeader columnName="#{property.firstPropertyName}" actionListener="#{widget.sortActionListener}">
+										<ice:outputText value="#{msg[property.labelId]}" />
+									</ice:commandSortHeader>
+								</c:when>
+								<c:otherwise>
+									<ice:outputText value="#{msg[property.labelId]}" />
+								</c:otherwise>
+							</c:choose>
+						</f:facet>
+
+						<tnt:widget childWidget="#{property}">
+							<ui:param name="idSuffix" value="#{loopStatus.index}" />
+							<ui:param name="value" value="#{entity}" />
+							<ui:param name="validate" value="true" />
+						</tnt:widget>
+					</ice:column>
+				</c:forEach>
+				
+				<c:if test="#{widget.deleteEntitiesMode}">
+					<ice:column styleClass="multipleSelectionMode">
+		        		<f:facet name="header">
+		            		<ice:outputText value=""/>
+		        		</f:facet>
+						<ice:commandButton 	action="#{widget.deleteSelectedEntity}" 
+											image="/wija/css/img/icons/16/cancel.png"	immediate="true">
+ 						</ice:commandButton>		        				
+		    		</ice:column>
+				</c:if>
+				
+			</ice:dataTable>
+
+			<ui:decorate template="./paginator.jspx">
+				<ui:param name="dataTableId" value="#{widget.id}" />
+				<ui:param name="showPaginator" value="#{widget.showPaginator}" />
+				<ui:param name="jsfDataPaginator" value="#{widget.jsfDataPaginator}" />
+			</ui:decorate>
+			<!--
+			<h:outputText value="#{widget.allSelected}"/>
+			-->
+		</ice:panelGroup>
+	</ui:component>
+</jsp:root>

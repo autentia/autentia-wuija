@@ -1,0 +1,461 @@
+/**
+ * Copyright 2008 Autentia Real Business Solutions S.L.
+ * 
+ * This file is part of Autentia WUIJA.
+ * 
+ * Autentia WUIJA is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, version 3 of the License.
+ * 
+ * Autentia WUIJA is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**************************
+ * general classes
+ **************************/
+img {
+	border: 0;
+}
+
+input,select {
+	border: 1px solid #B9B9B4;
+	color: #000000;
+	font-size: 11px;
+	font-weight: normal;
+	margin: 1px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 1px 2px 1px 3px;
+}
+
+button,input[type="reset"],input[type="button"],input[type="submit"] {
+	-moz-appearance: button;
+	background-color: #FDFDFA;
+	background-image: url('./img/button_bg.png');
+	background-position: bottom;
+	background-repeat: repeat-x;
+	font-weight: normal;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: #DDDDD8;
+	border-left-color: #B9B984;
+	border-right-color: #B9B984;
+	border-bottom-color: #797975;
+	color: #000000;
+	font-size: 11px;
+	text-decoration: none;
+	white-space: nowrap;
+	padding: 2px 9px 1px;
+}
+
+button:hover,input[type="reset"]:hover,input[type="button"]:hover,input[type="submit"]:hover
+	{
+	background-color: #EDFFFF;
+	background-image: url('./img/button_bg_hover.png');
+	border-top-color: #ACBACF;
+	border-left-color: #768092;
+	border-right-color: #768092;
+	border-bottom-color: #0A0B19;
+}
+
+button:active,input[type="reset"]:active,input[type="button"]:active,input[type="submit"]:active
+	{
+	background-color: #E1ECF2;
+	background-image: url('./img/button_bg_active.png');
+	border-top-color: #00000A;
+	border-left-color: #677183;
+	border-right-color: #677183;
+	border-bottom-color: #9DABC0;
+}
+
+button[disabled]:active,button[disabled],input[type="reset"][disabled]:active,input[type="reset"][disabled],input[type="button"][disabled]:active,input[type="button"][disabled],select[disabled]>input[type="button"],select[disabled]>input[type="button"]:active,input[type="submit"][disabled]:active,input[type="submit"][disabled]
+	{
+	background-color: #E5E5E0;
+	background-image: none;
+	color: #737373;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #B9B9B4;
+	text-decoration: none;
+}
+
+/**************************
+ * wija classes
+ **************************/
+.wijaDegradatedContainer {
+	background: #FFFFFF url('./img/contentContainer_bg.gif') repeat-x scroll
+		left top;
+	border: 1px solid #D9D9D9;
+	padding: 20px;
+}
+
+.wijaBasicContainer {
+	width: 96%;
+	margin: 0px 15px 15px 0;
+	padding: 15px;
+	background: #FFF;
+	border: 1px solid #d9d9d9;
+}
+
+.wijaLabel {
+	font-size: 12px;
+}
+
+.wijaFieldSet {
+	font-size: 12px;
+}
+
+.wijaFieldSetLegend {
+	background: #FFFFFF url('./img/pnlHdr_bgslice.gif') repeat-x scroll left
+		top;
+	width: 96%;
+	margin: 0px 15px 15px 0;
+	padding: 15px 0 0 15px;
+	border-top: 1px solid #d9d9d9;
+	border-right: 1px solid #d9d9d9;
+	border-left: 1px solid #d9d9d9;
+	height: 25px;
+	line-height: normal;
+	padding-top: 4px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+
+.wijaFieldSetContent {
+	width: 96%;
+	margin: 0px 15px 15px 0;
+	padding: 15px 0 0 15px;
+	background: #FFF;
+	border: 1px solid #d9d9d9;
+}
+
+.wijaFieldSetLegend .wijaFieldSetLegendTitle {
+	margin-top: 3px;
+	float: left;
+	color: #484848;
+	font-weight: bold;
+}
+
+.wijaFieldSetLegend .wijaFieldSetLegendOpts {
+	margin-top: 3px;
+	float: right;
+}
+
+.wijaFieldSetLegend .wijaFieldSetLegendOpts a {
+	text-decoration: underline;
+	color: #005081;
+}
+
+.wijaFieldSetLegend .wijaFieldSetLegendOpts a:hover {
+	text-decoration: underline;
+	color: #ADD6EC;
+}
+
+.wijaWidgetButtons {
+	width: 100%;
+}
+
+.wijaFieldSetContent .dataTableWidget .wijaWidgetButtons {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.wijaFieldSet .wijaFieldSetContent .dataTableWidget .wijaWidgetButtons {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.wijaDegradatedContainer .wijaFieldSet .wijaFieldSetContent .dataTableWidget .wijaWidgetButtons
+	{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.wijaFieldSetContent .wijaWidgetButtons {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.wijaWidgetButtons input {
+	margin-right: 10px;
+}
+
+.rightColumnSeparator {
+	padding-right: 50px;
+}
+
+.wijaFieldError {
+	border: 1px solid #BB0000;;
+}
+/**************************
+ * widget classes
+ **************************/
+.queryWidget {
+	width: 100%;
+}
+
+.queryWidget .advancedQueryWidgetMatchMode {
+	width: 100%;
+}
+
+.queryWidget .advancedQueryWidgetMatchModeLabel {
+	float: left;
+	margin-right: 3px;
+}
+
+.queryWidget .advancedQueryWidgetMatchModeLabel label {
+	font-weight: normal;
+	color: #000;
+}
+
+.advancedQueryWidgetMatchMode fieldset {
+	padding: 0px;
+}
+
+.productQueryWidget {
+	width: 100%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.queryWidget .advancedQueryWidgetCriteria .advancedQueryWidgetCriteriaTable
+	{
+	width: 100%;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.queryWidget .advancedQueryWidgetCriteria .advancedQueryWidgetCriterionField
+	{
+	width: 5px;
+}
+
+.queryWidget .advancedQueryWidgetCriteria .advancedQueryWidgetCriterionOperator
+	{
+	width: 5px;
+}
+
+.queryWidget .advancedQueryWidgetCriteria .advancedQueryWidgetCriterionValue div
+	{
+	float: left;
+}
+
+.dataTableWidget .dataTableListWidget {
+	width: 100%;
+}
+
+.dataTableWidget .dataTableListWidget .dataTableListWidgetHdr {
+	text-align: left;
+	font-size: 12px;
+}
+
+.dataTableWidget .dataTableListWidget tr td {
+	font-size: 12px;
+}
+
+.dataTableWidget .dataTablePaginatorWidget {
+	font-size: 11px;
+}
+
+.dataTableWidget .dataTableWidgetHeaderOptions {
+	text-align: right;
+}
+
+.dataTableWidget .dataTableWidgetHeaderOptions a {
+	margin-right: 3px;
+}
+
+.popupHeaderImage {
+	float: right;
+	margin-right: 2px;
+	margin-top: 2px;
+}
+
+.selectManyListboxWidgetTitle {
+	font-size: 12px;
+}
+
+.selectMultipleListsWidgetCol2 {
+	vertical-align: top;
+}
+
+/**************************
+ * sobreescritura de estilos de icefaces 
+ **************************/
+/* el campo de calendario debe mantener los estilos definidos para todo el layout */
+.iceSelInpDateInput {
+	border: 1px solid #D9D9D9;
+	width: 95px;
+	margin: 2px;
+	padding: 3px;
+}
+
+.iceSelInpDate {
+	font-size: 11px;
+}
+
+.iceSelInpDatePopup {
+	margin-bottom: 3px;
+	display: inline;
+}
+
+/* el campo de entrada de la búsqueda rápida sin márgenes */
+.iceSelInpTxtTxt {
+	margin: 0px;
+}
+
+/* modificamos el color de la fila al pasar el ratón en la tabla */
+.iceRowSelMouseOver {
+	background: #BDCDD7;
+	cursor: pointer;
+}
+
+/* modificamos el color de la fila seleccionada al pasar el ratón en la tabla */
+.iceRowSelSelectedMouseOver {
+	background: #BDCDD7;
+	cursor: pointer;
+}
+
+/* los enlaces de la páginación con los estilos corporativos */
+.iceDatPgrScrCol a {
+	background-color: #ADD6EC;
+}
+
+.iceDatPgrCol a:hover {
+	border: 1px solid #005081;
+}
+
+.iceMnuItmLabel {
+	font-size: 11px;
+}
+
+.iceMnuBarItem span {
+	font-size: 11px;
+}
+
+.icePnlPopHdr span {
+	float: left;
+}
+
+.popupHeaderImage {
+	height: 15px;
+}
+
+.iceMnuBar {
+	background: #FFFFFF url(./img/pnlHdr_bgslice.gif) repeat-x scroll left
+		top;
+	border: 1px solid #D9D9D9;
+	height: 28px;
+	line-height: normal;
+	margin-bottom: 5px;
+}
+
+.iceMnuBarItem {
+	border: 0px;
+	border-right: 1px solid #DBDBDB;
+}
+
+.icePnlPop {
+	width: auto; .
+	width: 400px; /* ie. hack */
+}
+
+.icePnlPopBody {
+	font-size: 12px;
+}
+
+.iceSelOneMnu-dis,.iceSelMnyLb-dis,.iceSelMnyMnu-dis,.iceSelOneLb-dis {
+	color: #999999;
+	font-size: 12px;
+}
+
+.icePnlGrdCol1 {
+	vertical-align: middle;
+}
+
+.icePnlGrdCol2 {
+	font-size: 13px;
+}
+
+.productQueryWidget .icePnlGrdCol1 {
+	float: left;
+	vertical-align: top;
+	width: 400px;
+}
+
+.productQueryWidget .icePnlGrdCol2 {
+	float: left;
+	width: 400px;
+	vertical-align: top;
+	font-size: 13px;
+}
+
+.iceMsgError,.iceMsgFatal,.iceMsgsError,.iceMsgsFatal {
+	margin-left: 5px;
+	padding-left: 20px;
+	color: #BB0000;
+	background: #FFFFFF url('./img/icons/16/error.png') no-repeat left top;
+	padding-top: 1px;
+	padding-bottom: 4px;
+}
+
+.iceMsgWarn,.iceMsgsWarn {
+	margin-left: 5px;
+	padding-left: 20px;
+	color: #B9B91A;
+	background: #FFFFFF url('./img/icons/16/warning.png') no-repeat left top;
+	padding-top: 1px;
+	padding-bottom: 4px;
+}
+
+.iceMsgInfo,.iceMsgsInfo {
+	margin-left: 5px;
+	padding-left: 20px;
+	color: #006FB0;
+	background: #FFFFFF url('./img/icons/16/info.png') no-repeat left top;
+	padding-top: 1px;
+	padding-bottom: 4px;
+}
+
+.iceMnuItmImage {
+	padding-left: 2px;
+	padding-top: 4px;
+	/* ie. hack */ .
+	padding: 0px;
+}
+
+.iceMnuItmLabel { /* ie. hack */ .
+	position: relative; .
+	top: 2px;
+}
+
+.iceInputFile {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+.icePnlCnfBody {
+	font-size: 12px;
+}
+
+.dataTableListWidget,.multipleSelectionMode {
+	width: 5px;
+}
+
+.dataTableListWidget,.pdfImage {
+	width: 5px;
+}

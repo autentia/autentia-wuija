@@ -1,0 +1,80 @@
+format 66
+
+classcanvas 128075 class_ref 130379 // SecurityUser
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 348 121 2000
+end
+classcanvas 128203 class_ref 130507 // ChangeablePasswordUser
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 287 18 2000
+end
+classcanvas 128715 class_ref 130635 // UserDetails
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode uml auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 401 268 2004
+end
+classcanvas 128971 class_ref 130763 // GrantedAuthority
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode uml auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 10 335 2000
+end
+classcanvas 129483 class_ref 130891 // SecurityGroup
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 340 629 2004
+end
+classcanvas 129739 class_ref 131019 // SecurityGroupImpl
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 444 473 2000
+end
+classcanvas 130251 class_ref 131147 // GroupManager
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode uml auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 769 379 2000
+end
+classcanvas 130379 class_ref 131275 // HibernateGroupManager
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 540 643 3005
+end
+relationcanvas 128459 relation_ref 136139 // <realization>
+  from ref 128075 z 1999 to ref 128203
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128843 relation_ref 136267 // <realization>
+  from ref 128075 z 1999 to ref 128715
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129099 relation_ref 136395 // <directional aggregation>
+  from ref 128075 z 1999 to ref 128971
+  role_a_pos 203 304 3000 no_role_b
+  multiplicity_a_pos 203 333 3000 no_multiplicity_b
+end
+relationcanvas 129611 relation_ref 136523 // <aggregation>
+  from ref 128075 z 1999 to ref 129483
+  role_a_pos 401 607 3000 role_b_pos 401 169 3000
+  multiplicity_a_pos 375 607 3000 multiplicity_b_pos 375 169 3000
+end
+relationcanvas 129867 relation_ref 136651 // <realization>
+  from ref 129739 z 1999 to ref 129483
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130507 relation_ref 137035 // <realization>
+  from ref 130379 z 1999 to ref 130251
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130635 relation_ref 137163 // <dependency>
+  from ref 130379 z 2003 to ref 129483
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130763 relation_ref 137291 // <dependency>
+  from ref 130379 z 2003 to ref 128715
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131019 relation_ref 137419 // <directional aggregation>
+  from ref 129483 z 1999 to ref 128971
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

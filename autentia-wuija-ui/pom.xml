@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<artifactId>autentia-wuija-parent</artifactId>
+		<groupId>com.autentia.wuija</groupId>
+		<version>1.36-SNAPSHOT</version>
+	</parent>
+	
+	<groupId>com.autentia.wuija</groupId>
+	<artifactId>autentia-wuija-ui</artifactId>
+	<version>1.36-SNAPSHOT</version>
+
+	<name>autentia-wuija-ui</name>
+	<url>${autentia.site.url}/${project.parent.artifactId}/${project.artifactId}</url>
+	<description>Projecto donde se definene los widgets para la interfaz de usuario de WUIJA.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>autentia-wuija-core</artifactId>
+		</dependency>
+		
+		<!-- ========= Spring Web MVC ========= -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		
+		<!-- ========= ICEfaces ========= -->
+		<dependency>
+			<groupId>com.autentia.common.dependencies</groupId>
+			<artifactId>autentia-dependenciesICEfaces</artifactId>
+			<version>1.8.2</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- ========= Others ========= -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.3</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mc-release</id>
+			<name>Local Maven repository of releases</name>
+			<url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of autentia-util.
+    
+    autentia-util is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    autentia-util is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with autentia-util. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<project name="autentia-util">
+
+<!--
+<bannerLeft>
+	<name>Maven</name>
+	<src>http://maven.apache.org/images/apache-maven-project.png</src>
+	<href>http://maven.apache.org/</href>
+</bannerLeft>
+<bannerRight>
+	<src>http://maven.apache.org/images/maven-small.gif</src>
+</bannerRight>
+-->
+	
+<body>
+	<!--
+	<links>
+		<item name="Apache" href="http://www.apache.org/" />
+		<item name="Maven 1.0" href="http://maven.apache.org/"/>
+		<item name="Maven 2" href="http://maven.apache.org/maven2/"/>
+	</links>
+	-->
+
+	<!--
+	<menu ref="modules" />
+	
+	<menu name="Documentación">
+		<item name="Pruebas" href="versionTest.html"/>
+		<item name="Programa deydeTest" href="deydeTest.html"/>
+	</menu>
+	-->
+
+	<menu ref="reports" />
+</body>
+</project>

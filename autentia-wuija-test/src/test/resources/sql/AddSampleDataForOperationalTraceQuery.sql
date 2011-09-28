@@ -1,0 +1,12 @@
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (1,'admin','QUERY_PRODUCT','2012-01-04 23:59:59','query product 1','query product 1');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (2,'admin','QUERY_PRODUCT','2012-01-05 00:00:00','query product 2','query product 2');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (3,'admin','QUERY_PRODUCT','2012-01-05 23:59:59','query product 3','query product 3');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (4,'admin','QUERY_PRODUCT','2012-01-06 00:00:00','query product 4','query product 4');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (5,'admin','QUERY_CLIENT','2012-01-05 23:59:59','query client 1','query client 1');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (6,'admin','QUERY_CLIENT','2012-01-06 00:00:01','query client 2','query client 2');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (7,'notAdmin','QUERY_CLIENT','2012-01-04 23:59:58','query client 3','query client 3');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (8,'notAdmin','QUERY_CLIENT','2012-01-04 23:59:59','query client 4','query client 4');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (9,'notAdmin','CREATE_CLIENT','2012-01-05 00:00:00','create client 1','create client 1');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (10,'notAdmin','CREATE_CLIENT','2012-01-05 23:59:59','create client 2','create client 2');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (11,'notAdmin','CREATE_CLIENT','2012-01-06 23:59:59','create client 3','create client 3');
+INSERT INTO OperationalTrace (id,userName,type,date,string1,string2) VALUES (12,'notAdmin','CREATE_CLIENT','2012-01-07 23:59:59','create client 4','create client 4');

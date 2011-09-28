@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:tnt="http://www.autentia.com/frmwrk/component">
+
+	<ui:composition>
+
+
+		<ice:panelPopup id="#{widget.modalPopUpId}" dragable="false"
+			modal="true" autoCentre="true" autoPosition="manual"
+			visible="#{widget.modalRendered}" rendered="#{widget.modalRendered}"
+			style="width:770px; height: 600px;">
+
+
+			<f:facet name="body">
+				<ice:panelGroup styleClass="wijaFieldSet">
+
+					<ice:panelGroup styleClass="wijaFieldSetLegend">
+						<ice:panelGroup styleClass="wijaFieldSetLegendTitle">
+							<ice:outputText value="#{msg['trace.detail.title']}" />
+						</ice:panelGroup>
+					</ice:panelGroup>
+					<ice:panelGroup styleClass="wijaFieldSetContent">
+							<ice:panelGrid>
+								<ice:panelGroup styleClass="wijaBasicContainer"
+									style="width:678px; height: 410px;">
+									<ice:panelGroup styleClass="overFlowWithMaxHeight"
+										style="width:678px; margin-bottom:15px;">
+										<ice:tree value="#{widget.model}" var="item"
+											hideRootNode="false" hideNavigation="false">
+											<ice:treeNode>
+												<f:facet name="content">
+													<ice:panelGroup style="display: inline;">
+														<ice:outputText value="#{item.userObject.text}" />
+													</ice:panelGroup>
+												</f:facet>
+											</ice:treeNode>
+										</ice:tree>
+									</ice:panelGroup>
+								</ice:panelGroup>
+								<ice:panelGroup
+									styleClass="wijaBasicContainer wijaWidgetButtons"
+									style="width:678px; margin-top:0px">
+									<ice:commandButton value="#{msg['btn.return']}"
+										action="#{widget.toggleModalRendered}" />
+									<ice:commandButton value="#{msg['treeComponent.expand']}"
+										action="#{widget.expandeAll}" />
+									<ice:commandButton value="#{msg['treeComponent.collapse']}"
+										action="#{widget.collapseAll}" />
+								</ice:panelGroup>
+							</ice:panelGrid>
+
+					</ice:panelGroup>
+				</ice:panelGroup>
+
+
+			</f:facet>
+
+		</ice:panelPopup>
+
+	</ui:composition>
+</jsp:root>
+

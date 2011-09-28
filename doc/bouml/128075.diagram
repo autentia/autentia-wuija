@@ -1,0 +1,86 @@
+format 66
+
+classcanvas 128075 class_ref 128075 // SimpleExpression
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 14 243 2000
+end
+classcanvas 128203 class_ref 128203 // Criterion
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 111 110 2000
+end
+classcanvas 128459 class_ref 128331 // Criteria
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 322 99 2000
+end
+classcanvas 128971 class_ref 128459 // EntityCriteria
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 289 231 2000
+end
+classcanvas 130251 class_ref 128843 // Junction
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 158 242 2000
+end
+classcanvas 136779 class_ref 129099 // JsfWidget
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode uml auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 562 23 2000
+end
+classcanvas 137163 class_ref 129227 // AdvancedQuery
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode uml auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  xyz 522 118 2000
+end
+note 137547 "Requisitos:
+* El AdvancedQuery debe trabajar con algo que le proporciona el operador (AND, OR) y la lista de Expression.
+* Tiene que ser posible tener expresiones anidadas.
+
+Comentarios:
+* La clase SimpleExpression representa un criterio sencillo de propiedad + operador (==, !=, ...) + valor.
+* La clase Criteria representa un conjunto de Criterion, unidos todos por un AND o un OR. Es abstracta de forma que nunca se puede trabajar con ella directamente.
+* La interfaz Criterion representa todo lo que puede estar dentro de una Criteria. De esta forma, sólo podrá contener SimpleExpression o Junction, pero no EntityCriteria. Esto es así porque no tiene sentido, para el desarrollador, meter una EntityCriteria que él cree, dentro de otra EntityCriteria (la EntityCriteria es la clase que mantiene la entidad 'root entity' sobre la que se hace la consulta, y sólo hay una 'root entity').
+* Para hacer un join, dada una EntityCriteria, llamamos a su método join() indicando el nombre de la propiedad por la que se va ha hacer el join. Esto internamente creará una nueva EntityCriteria que queda asociada a la primera por ese atributo. Pero esto es \"transparente\" para el desarrollador.
+* La clase AdvancedQuery podrá trabajar con cualquier tipo de Criteria.
+"
+  xyzwh 20 431 2000 1201 270
+relationcanvas 128042 relation_ref 128042 // <directional composition>
+  from ref 128971 z 2001 to point 540 258
+  line 128170 z 2001 to point 540 340
+  line 128298 z 2001 to point 380 340
+  line 128426 z 2001 to ref 128971
+  role_a_pos 392 303 3000 no_role_b
+  multiplicity_a_pos 366 303 3000 no_multiplicity_b
+end
+relationcanvas 134091 relation_ref 132555 // <directional aggregation>
+  from ref 128459 z 1999 to ref 128203
+  no_role_a no_role_b
+  multiplicity_a_pos 223 148 3000 no_multiplicity_b
+end
+relationcanvas 135115 relation_ref 133451 // <generalisation>
+  from ref 128971 z 1999 to ref 128459
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 135499 relation_ref 133835 // <realization>
+  from ref 128075 z 1999 to ref 128203
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 136139 relation_ref 134475 // <realization>
+  from ref 130251 z 1999 to ref 128203
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 136267 relation_ref 134603 // <generalisation>
+  from ref 130251 z 1999 to ref 128459
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 137291 relation_ref 134859 // <directional aggregation>
+  from ref 137163 z 1999 to ref 128459
+  no_role_a no_role_b
+  multiplicity_a_pos 452 147 3000 no_multiplicity_b
+end
+relationcanvas 137419 relation_ref 134987 // <generalisation>
+  from ref 137163 z 1999 to ref 136779
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

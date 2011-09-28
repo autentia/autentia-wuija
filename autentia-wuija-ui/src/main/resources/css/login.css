@@ -1,0 +1,54 @@
+/**
+ * Copyright 2008 Autentia Real Business Solutions S.L.
+ * 
+ * This file is part of Autentia WUIJA.
+ * 
+ * Autentia WUIJA is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, version 3 of the License.
+ * 
+ * Autentia WUIJA is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**************************
+ * login classes
+ **************************/
+#login{
+	width:75%;
+	margin:auto;
+}
+#login #logo{
+	margin-top:75px;
+	margin-bottom:60px;
+	text-align:center;
+}
+#login #content h3{
+	text-align:center;
+}
+#login #content #error {
+	text-align:center;
+	color:red;
+	margin-top:3px;
+	margin-bottom:6px;
+	font-size:12px;
+}
+#login #content #formData table {
+	margin:auto;
+	
+}
+#login #content #formData table tr td {
+	padding:4px;
+}
+#login #content #formData table tr td.label {
+	text-align:right;
+}
+#login #content #formData #buttons{
+	text-align:center;
+	margin-top:10px;
+}

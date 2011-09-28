@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+		
+	<context:annotation-config />
+	
+	<context:component-scan base-package="com.autentia.wuija" />
+	
+	<aop:aspectj-autoproxy />
+
+	<bean id="messageSource" class="com.autentia.wuija.i18n.SequenceMessageSource">
+    	<property name="basenames">
+      		<list>
+      			<value>classpath*:widgetMessages</value>
+        		<value>classpath*:messages</value>
+			</list>
+    	</property>
+    	<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	<bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+		<constructor-arg ref="messageSource" />
+	</bean>
+	
+	<!-- 
+		| Local DataSource that works in any environment
+		| Note that it is not intended for production
+		| You sholud use Commons DBCP BasicDataSource as alternative or C3P0 ComboPooledDataSource as best alternative
+		| If you are running insie an Application Server, better use a JNDI DataSource (see below)
+	-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:mem:wuija-test" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="jasperReportsService" class="com.autentia.wuija.reports.JasperReportsDataSourceServiceWithCache">
+		<constructor-arg ref="dataSource" />
+		<constructor-arg value="${reports.source.dir.prefix}" />
+		<constructor-arg value="${reports.work.dir.suffix}" />
+	</bean>
+	
+	<!-- Como no tenemos base de datos, definimos un Dao de "coña". Por supuesto no nos hace falta un transactionManager. -->
+	<bean id="dao" class="com.autentia.wuija.spring.MockDao" />
+	
+	<bean id="sessionFactory" class="com.autentia.wuija.spring.MockSessionFactory" />
+	
+    <bean id="mockAuthenticationManager" class="org.springframework.security.MockAuthenticationManager" />
+    
+   	<bean id="passwordEncoder" class="org.springframework.security.providers.encoding.ShaPasswordEncoder" />
+    
+    <bean id="userDetailsHqlProvider" class="com.autentia.wuija.security.impl.hibernate.MockUserDetailsHqlProvider" />
+
+</beans>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+		
+	<context:annotation-config />
+	
+	<context:component-scan base-package="com.autentia.wuija" />
+	
+	<aop:aspectj-autoproxy />
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="springUtils" class="com.autentia.wuija.util.spring.SpringUtils" />
+	
+	<bean id="messageSource" class="com.autentia.wuija.i18n.SequenceMessageSource" depends-on="springUtils">
+      	<property name="basenames">
+      		<list>
+      			<value>classpath*:widgetMessages</value>
+        		<value>classpath*:messages</value>
+			</list>
+    	</property>
+    	<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	<bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+		<constructor-arg ref="messageSource" />
+	</bean>
+
+	<!-- 
+		| Aspect to trace entering and exiting of methods. It gives the time consumed, too.
+		| Remember to set to TRACE the log level of this class.
+	<bean id="autentiaTracer" class="com.autentia.wuija.aop.AopTracer" />
+	<aop:config>
+		<aop:aspect id="autentiaAopTracer" ref="autentiaTracer">
+		  <aop:around pointcut="within(com.autentia.acer..*)" method="traceMethod" />
+		</aop:aspect>
+	</aop:config>
+	-->
+	
+	<!--
+		| JNDI DataSource for J2EE environments (if you are running inside an Application Server)
+		| Anyway, you could redefine de dataSource bean in other applicationContext.
+	-->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="${jndi.name}" />
+	</bean>
+	
+	<!-- 
+		| Local DataSource that works in any environment
+		| Note that it is not intended for production
+		| You sholud use Commons DBCP BasicDataSource as alternative or C3P0 ComboPooledDataSource as best alternative
+		| If you are running insie an Application Server, better use a JNDI DataSource (see below)
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:file:/tmp/appName/db/hsqldb/hibernate;shutdown=true" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	-->
+	
+
+	<!-- 
+		| Packages to scan, looking for @Entity annotation
+	-->	
+	<bean id="entitiesPackagesToScan" class="java.util.ArrayList">
+	  <constructor-arg index="0">
+	    <list>
+	       <value>com.autentia.wuija.**.*</value>
+	    </list>
+	  </constructor-arg>
+	</bean>
+
+	<!--
+		| Hibernate SessionFactory.
+		| hibernate.cfg.xml could specify connection's configuration, but it is overridden here by datasource property.
+		| This is better because is easier to change the datasource, and you can reuse it in more places.
+	-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="configLocation">
+			<value>classpath:${hibernate.cfg.file}</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<ref bean="entitiesPackagesToScan" />
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="jasperReportsService" class="com.autentia.wuija.reports.JasperReportsDataSourceServiceWithCache">
+	  <constructor-arg ref="dataSource" />
+	  <constructor-arg value="${reports.source.dir.prefix}" />
+	  <constructor-arg value="${reports.work.dir.suffix}" />
+	</bean>
+	
+	
+	<bean id="jasperReportsBeanService" class="com.autentia.wuija.reports.JasperReportsBeanService">
+	  <constructor-arg value="${reports.source.dir.prefix}" />
+	  <constructor-arg value="${reports.work.dir.suffix}" />
+	</bean>
+	
+	
+	<!-- MailService configuration -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  <property name="host" value="${mail.host}"/>
+	  <property name="port" value="${mail.port}"/>
+	  <property name="username" value="${mail.username}"/>
+	  <property name="password" value="${mail.password}"/>
+	  <property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
+	<bean id="mailService" class="com.autentia.wuija.mail.MailService">
+	  <property name="active" value="${mail.active}"/>
+	  <property name="mailSender" ref="mailSender"/>
+	  <property name="from" value="${mail.email.sender}"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,9 @@
+cancel.png		Marco Martin		LGPL
+error.png		Alexandre Moore		LGPL
+excel.png		Mark James			Creative Commons
+exit.png		Everaldo Coelho		LGPL
+info.png  		Marco Martin		LGPL
+ok.png			Marco Martin		LGPL
+password.png	Everaldo Coelho		LGPL
+pdf.png 		Everaldo Coelho		LGPL
+warning.png		David Vignoni		LGPL

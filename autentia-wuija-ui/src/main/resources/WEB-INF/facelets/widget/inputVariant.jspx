@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:tnt="http://www.autentia.com/frmwrk/component">
+
+	<ui:component>
+		<!-- Se intenta extraer el tipo del variant que nos han pasado como 'value' -->
+		<c:set var="type" value="#{value[widget.firstPropertyName]['type']}" />
+
+
+		<!-- TODO Esto parece un poco ñapa pero no se puede hacer de otra manera.
+		El problema es el orden en el que se evaluan los diferentes EL. Cuando widget.getType es null, es que se está
+		usando el VariantProperty en un datatable. Como el datatable va iterando por las distintas filas, cada registro
+		el variant puede ser de tipo distinto, así que hasta que no lo vamos a pintar, no podemos determinar el tipo.
+		Además en un datatble el 'value' sale de un ice:datatable, y es aquí donde esta el problema, ya que esta valor
+		no esta disponible al procesar el tnt:widget (son ámbitos diferentes).
+		Esto se podrá arreglar cuando para pintar el datatble se use el ice:column y sea el modelo el que determine que
+		hay que pintar en cada caso. En esta situción desde el modelo se podrán crear VariantProperty para cada celda
+		en lugar de uno por columna como ocurre ahora.
+		-->
+		<c:choose>
+			<c:when test="#{widget.type != null}">
+				<tnt:widget childWidget="#{widget.typedProperty['DEFINED_INSIDE_VARIANTPROPERTY']}">
+					<ui:param name="idSuffix" value="#{idSuffix}" />
+					<ui:param name="value" value="#{value}" />
+				</tnt:widget>
+			</c:when>
+
+			<c:otherwise>
+				<ice:panelGroup rendered="#{type == 'BOOLEAN'}">
+					<tnt:widget childWidget="#{widget.typedProperty['BOOLEAN']}">
+						<ui:param name="idSuffix" value="#{idSuffix}" />
+						<ui:param name="value" value="#{value[widget.firstPropertyName]}" />
+					</tnt:widget>
+				</ice:panelGroup>
+
+				<ice:panelGroup rendered="#{type == 'DATE'}">
+					<tnt:widget childWidget="#{widget.typedProperty['DATE']}">
+						<ui:param name="idSuffix" value="#{idSuffix}" />
+						<ui:param name="value" value="#{value[widget.firstPropertyName]}" />
+					</tnt:widget>
+				</ice:panelGroup>
+
+				<ice:panelGroup rendered="#{type == 'DOUBLE'}">
+					<tnt:widget childWidget="#{widget.typedProperty['DOUBLE']}">
+						<ui:param name="idSuffix" value="#{idSuffix}" />
+						<ui:param name="value" value="#{value[widget.firstPropertyName]}" />
+					</tnt:widget>
+				</ice:panelGroup>
+
+				<ice:panelGroup rendered="#{type == 'INTEGER'}">
+					<tnt:widget childWidget="#{widget.typedProperty['INTEGER']}">
+						<ui:param name="idSuffix" value="#{idSuffix}" />
+						<ui:param name="value" value="#{value[widget.firstPropertyName]}" />
+					</tnt:widget>
+				</ice:panelGroup>
+
+				<ice:panelGroup rendered="#{type == 'STRING'}">
+					<tnt:widget childWidget="#{widget.typedProperty['STRING']}">
+						<ui:param name="idSuffix" value="#{idSuffix}" />
+						<ui:param name="value" value="#{value[widget.firstPropertyName]}" />
+					</tnt:widget>
+				</ice:panelGroup>
+			</c:otherwise>
+		</c:choose>
+	</ui:component>
+</jsp:root>

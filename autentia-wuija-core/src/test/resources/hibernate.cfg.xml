@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		
+		<!-- With Spring, the DataSource's properties will be overriden by datasource bean -->
+		<!-- This configuration it's only usefull to Hibernate Tools Console -->
+<!--		<property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>-->
+<!--		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>-->
+<!--		<property name="hibernate.connection.username">sa</property>-->
+<!--		<property name="hibernate.connection.password"></property>-->
+<!--		<property name="hibernate.connection.url">jdbc:hsqldb:file:/tmp/acer-pms/db/hsqldb/hibernate;shutdown=true</property>-->
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.username">acer</property>
+		<property name="hibernate.connection.password">acer</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/acer?autoReconnect=true</property>
+		<!-- /This configuration it's only usefull to Hibernate Tools Console -->
+
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.show_sql">true</property>
+
+		<event type="post-load">
+			<listener class="com.autentia.wuija.persistence.event.AnnotationEventListener"/>
+			<listener class="org.hibernate.event.def.DefaultPostLoadEventListener"/>
+		</event>
+	</session-factory>
+</hibernate-configuration>

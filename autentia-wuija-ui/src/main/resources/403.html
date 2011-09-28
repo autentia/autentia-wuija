@@ -1,0 +1,91 @@
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<title>HTTP 403 - Access is denied</title>
+		<meta http-equiv="REFRESH" content="15;url=../j_spring_security_logout">
+		<style type="text/css">
+		body{
+			font-family:Tahoma,Arial,sans-serif;
+			background-color:white;
+		}
+		h1,h2,h3{
+			color:white;
+		}
+		h1 {
+			font-family:Tahoma,Arial,sans-serif;
+			background-color:#525D76;
+			font-size:22px;
+		} 
+		h2 {
+			background-color:#525D76;
+			font-size:16px;
+			} 
+		h3 {
+			background-color:#525D76;
+			font-size:14px;
+		} 
+		b {
+			color:white;
+			background-color:#525D76;
+		} 
+		p {
+			background:white;
+			color:black;
+			font-size:12px;
+		}
+		a {
+			color:#BB0000;
+			font-weight:bold;
+		}
+		a:hover {
+			color:#045A4C;
+			text-decoration:underline;
+		}
+		hr {
+			color : #525D76;
+		}
+		</style>
+		<script type="text/javascript">
+			var seg = 16;
+			function countdown(){
+				seg--;
+				document.getElementById("seconds").innerHTML = seg;
+				if (seg == 0) return;
+				window.setTimeout("countdown();",1000);
+			}
+		</script>
+	</head>
+	<body onload="countdown();">
+		<h1>Status HTTP 403 - Access is denied</h1>
+		<hr size="1" noshade="noshade">
+		<p><b>Type</b> Status Report</p>
+		<p><b>Message</b> <span>Access to the requested resource has been denied</span></p>
+		<p><b>Description</b>
+		<span>You might not have permission to view this page (Access is denied).</span></p>
+		<p><b>Actions</b>
+		<span>You can click on <a href="#" onclick="history.back();">back</a> to return to last page or you can click on <a href="../j_spring_security_logout">home</a> to go to home page.</span></p>
+		<hr size="1" noshade="noshade">
+		<h3>Your session will be invalidated in <span id="seconds">15</span> seconds.</h3>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:tnt="http://www.autentia.com/frmwrk/component">
+
+	<ui:component>
+
+		<c:if test="#{empty widgetId}">
+			<c:set var="widgetId" value="#{widget.id}" />
+		</c:if>
+
+		<ice:panelGrid columns="2"
+			styleClass="dataTableWidget autocompleteSelectedList"
+			rendered="#{!empty widget.linkList}" columnClasses=" , , , , , ">
+
+			<ice:outputText value="#{msg[widget.labelId]}&#160;&#160;&#160;"
+				escape="false" style="visibility:hidden;"
+				rendered="#{not empty widget.labelId}" />
+
+			<h:panelGroup>
+				<ice:panelGrid columns="2" styleClass="dataTableWidget"
+					id="#{widget.itemsSelectedListId}"
+					columnClasses="icePnlGrdCol1, icePnlGrdCol1">
+					<c:forEach var="link" items="#{widget.linkList}"
+						varStatus="varStatus">
+						<tnt:widget childWidget="#{link}">
+							<ui:param name="criterionIdSuffix" value="#{varStatus.index}" />
+						</tnt:widget>
+					</c:forEach>
+
+				</ice:panelGrid>
+			</h:panelGroup>
+		</ice:panelGrid>
+
+		<ice:panelGrid id="autocompleteSelector#{widgetId}"
+			columns="#{widget.tableColumnsNumber}" styleClass="dataTableWidget">
+
+			<ice:outputText value="#{msg[widget.labelId]}" styleClass="wijaLabel"
+				rendered="#{not empty widget.labelId}" />
+
+				<ice:selectInputText id="#{widgetId}"
+					valueChangeListener="#{widget.updateList}"
+					rows="#{widget.rowsInTable}" onkeyup="#{widget.onkeyup}"
+					onblur="#{widget.onblur}" styleClass="iceInpTxt"
+					disabled="#{widget.disabled}" immediate="true"
+					value="#{widget.value}">
+				
+						<f:selectItems value="#{widget.matchesList}"/>
+					
+				</ice:selectInputText>
+
+			<ui:insert name="autocompleteSelectorThirdColumn" />
+
+		</ice:panelGrid>
+	</ui:component>
+
+</jsp:root>

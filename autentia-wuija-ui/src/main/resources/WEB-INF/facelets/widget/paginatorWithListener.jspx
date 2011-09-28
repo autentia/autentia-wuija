@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2008 Autentia Real Business Solutions S.L.
+    
+    This file is part of Autentia WUIJA.
+    
+    Autentia WUIJA is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, version 3 of the License.
+    
+    Autentia WUIJA is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public License
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:tnt="http://www.autentia.com/frmwrk/component">
+
+	<ui:component>
+
+			<c:if test="empty showPaginator">
+				<c:set var="showPaginator" value="true" />
+			</c:if>
+			<c:if test="empty jsfDataPaginator">
+				<c:set var="jsfDataPaginator" value="" />
+			</c:if>
+			
+			<c:if test="empty paginatorId">
+				<c:set var="paginatorId" value="default" />
+			</c:if>
+			
+			
+			<ice:panelGrid columns="2" styleClass="dataTablePaginatorWidget">
+				<ice:dataPaginator id="paginator_#{paginatorId}" for="#{dataTableId}" rendered="#{showPaginator}" fastStep="3" paginator="true"
+					paginatorMaxPages="4" immediate="true" binding="#{jsfDataPaginator}" actionListener="#{widget.jsfDataPaginatorActionListener }">
+					<f:facet name="first">
+						<ice:graphicImage id="firstpage_1" url="/xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;"
+							title="#{msg['dataScrolling.firstpage']}" />
+					</f:facet>
+					<f:facet name="last">
+						<ice:graphicImage id="lastpage_1" url="/xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;"
+							title="#{msg['dataScrolling.lastpage']}" />
+					</f:facet>
+					<f:facet name="previous">
+						<ice:graphicImage id="previouspage_1" url="/xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;"
+							title="#{msg['dataScrolling.previouspage']}" />
+					</f:facet>
+					<f:facet name="next">
+						<ice:graphicImage id="nextpage_1" url="/xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;"
+							title="#{msg['dataScrolling.nextpage']}" />
+					</f:facet>
+					<f:facet name="fastforward">
+						<ice:graphicImage id="fastforward_1" url="/xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;"
+							title="#{msg['dataScrolling.fastforward']}" />
+					</f:facet>
+					<f:facet name="fastrewind">
+						<ice:graphicImage id="fastrewind_1" url="/xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;"
+							title="#{msg['dataScrolling.fastbackward']}" />
+					</f:facet>
+				</ice:dataPaginator>
+
+				<ice:dataPaginator id="paginator_#{paginatorId}" for="#{dataTableId}" rendered="#{showPaginator}" rowsCountVar="rowsCount"
+					displayedRowsCountVar="displayedRowsCount" firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+					pageCountVar="pageCount" pageIndexVar="pageIndex">
+					<ice:outputFormat value="#{msg['dataScrolling.outputFormat.text']}">
+						<f:param value="#{rowsCount}" />
+						<f:param value="#{displayedRowsCount}" />
+						<f:param value="#{firstRowIndex}" />
+						<f:param value="#{lastRowIndex}" />
+						<f:param value="#{pageIndex}" />
+						<f:param value="#{pageCount}" />
+					</ice:outputFormat>
+				</ice:dataPaginator>
+			</ice:panelGrid>
+
+	</ui:component>
+</jsp:root>

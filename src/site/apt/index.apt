@@ -1,0 +1,49 @@
+~~
+~~ Copyright 2008 Autentia Real Business Solutions S.L.
+~~ 
+~~ This file is part of Autentia WUIJA.
+~~ 
+~~ Autentia WUIJA is free software: you can redistribute it and/or modify
+~~ it under the terms of the GNU Lesser General Public License as published by
+~~ the Free Software Foundation, version 3 of the License.
+~~ 
+~~ Autentia WUIJA is distributed in the hope that it will be useful,
+~~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~ GNU Lesser General Public License for more details.
+~~ 
+~~ You should have received a copy of the GNU Lesser General Public License
+~~ along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+~~
+
+WUIJA - Widget User Interface for Java Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	A veces parece que el desarrollo de software es cosa del más allá, así que hemos creado nuestra propia <tabla> 
+	para ayudarnos a <hablar> con el mundo de los espíritus  ;)
+
+	Es decir WUIJA pretende ser un framework para reducir y controlar la creciente complejidad de las tecnologías de 
+	desarrollo Web actuales.
+
+	El princpipo de WUIJA se basa en la utilización de componentes (widgets) de alto nivel. Esto quiere decir que son 
+	componentes con funcionalidades avanzadas, por ejemplo un <data table> que ya hace paginación en base de datos y 
+	se sabe exportar a CSV; o buscadores rápidos, o de composición de criterios que se pueden aplicar a esos <data 
+	tables>.
+
+	WUIJA se programa en su gran mayoria en clases Java, intentando reducir de esta manera los molestos errores en 
+	tiempo de ejecución que suelen producirse cuando abusamos de XML, JSP, JavaScript, y en general recursos que se 
+	procesan en tiempo de ejecución. Sólo utilizaremos JSPX para definir el layout de la aplicación, es decir, para 
+	decir donde queremos posicionar cada componente.
+
+	WUIJA pretende ser un framework ligero, por lo que no requiere un Servidor de Aplicaciones para su ejecución 
+	(basta con un Tomcat), aunque también puede funcionar en un Servidor de Aplicaciones.
+
+	WUIJA se basa en estándares y tecnologías abiertas, ampliamente difundidas y reconocidas por la comunidad de 
+	desarrollo: ICEfaces, AJAX, Facelets, JSF, Hibernate, Spring, JasperReports, ... Por esto WUIJA no es un 
+	framework intrusivo, en el sentido de que cualquier desarrollador con conocimientos en estas tecnologías puede 
+	hacerse rápidamente con el control, construir nuevas piezas, o modificar las existentes. De hecho en cualquier 
+	momento puedes dejar de usar WUIJA y quedarte usando directamente los estándares y tecnologías en las que se apoya.
+
+	Además WUIJA se distribuye bajo licencia LGPL, lo que garantiza que se puede usar tanto en proyectos libres o 
+	abiertos, como en proyectos cerrados. Y su código siempre está disponible (no nos gustan las cajas negras).
+	

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.autentia.wuija</groupId>
+		<artifactId>autentia-wuija-parent</artifactId>
+		<version>1.36-SNAPSHOT</version>
+	</parent>
+	
+	<groupId>com.autentia.wuija</groupId>
+	<artifactId>autentia-wuija-util</artifactId>
+	<version>1.36-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	
+	<name>autentia-wuija-util</name>
+	<url>${autentia.site.url}/${project.parent.artifactId}/${project.artifactId}</url>
+	<description>Clases de utilidades de Autentia para trabajar con cadenas, EJBs, JSF, ...</description>
+	
+	<!--
+		| La mayoría de dependencias de esta librerias serán de scope 'provided' ya que son clases de utilidad
+		| para Hibernate, JSF, anotaciones, ... No tiene sentido arrastrar todas las librerías ya que puede ser
+		| que no se estén usando en la aplicación final. Si la aplicación final usa clases de utilidad de Hibernate
+		| es porque está usando Hibernate, así que debería tener las dependencias necesarias. 
+	 -->
+	<dependencies>
+		<!-- ========== Para la gestión de entidades (@Entity) y temas de JSF y Facelets ========== -->
+		<dependency>
+			<groupId>com.autentia.common.dependencies</groupId>
+			<artifactId>autentia-dependenciesJBoss</artifactId>
+			<version>4.2.2-3</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.autentia.common.dependencies</groupId>
+			<artifactId>autentia-dependenciesICEfaces</artifactId>
+			<version>1.8.1</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+				
+		<!-- ========== Hibernate, para el validador de JSF ========== -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.3.1.GA</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>3.1.0.GA</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mc-release</id>
+			<name>Local Maven repository of releases</name>
+			<url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
+</project>

@@ -1,0 +1,15 @@
+window_sizes 1920 1152 450 1464 966 135
+windows_style
+diagrams
+  active  classdiagram_ref 128075 // criteria
+    1464 945 100 17 0 0
+end
+show_stereotypes
+selected classdiagram_ref 128075 // criteria
+open
+  classview_ref 128075 // criteria
+  classview_ref 128331 // query
+  classview_ref 128203 // widget
+  classview_ref 129483 // security
+end
+end
