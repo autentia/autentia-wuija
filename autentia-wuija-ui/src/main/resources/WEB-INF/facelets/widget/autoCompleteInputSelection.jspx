@@ -42,7 +42,7 @@
 				rendered="#{not empty widget.labelId}" />
 
 			<h:panelGroup>
-				<ice:panelGrid columns="2" styleClass="dataTableWidget"
+				<ice:panelGrid columns="#{widget.linksColumnNumber}" styleClass="dataTableWidget"
 					id="#{widget.itemsSelectedListId}"
 					columnClasses="icePnlGrdCol1, icePnlGrdCol1">
 					<c:forEach var="link" items="#{widget.linkList}"

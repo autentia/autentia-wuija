@@ -36,6 +36,8 @@ import com.icesoft.faces.component.selectinputtext.SelectInputText;
 public class AutoCompleteInputSelection<T> extends JsfWidget {
 
 	private final static int NUMBER_OF_COLUMNS_IN_TABLE = 2;
+	
+	private final static int DEFAULT_NUMBER_OF_LINK_COLUMNS = 2;
 
 	protected List<DinamicLink> linkList = new ArrayList<DinamicLink>();
 
@@ -54,6 +56,8 @@ public class AutoCompleteInputSelection<T> extends JsfWidget {
 	protected String actualTextTyped;
 
 	private int rowsInTable = 10;
+	
+	private int linkColumns = DEFAULT_NUMBER_OF_LINK_COLUMNS;
 
 	public AutoCompleteInputSelection(String labelId, AutoCompleteCallBack autoCompleteEventListener) {
 
@@ -62,7 +66,15 @@ public class AutoCompleteInputSelection<T> extends JsfWidget {
 		this.autoCompleteCallBack = autoCompleteEventListener;
 
 	}
-
+	
+	public int getLinksColumnNumber(){
+		return linkColumns;
+	}
+	
+	public void setLinksColumnNumber(int number){
+		linkColumns = number;		
+	}
+	
 	public void addNewLinkToSelectedValues(final String newValue) {
 
 		if (newValue != null && !"".equalsIgnoreCase(newValue)) {
