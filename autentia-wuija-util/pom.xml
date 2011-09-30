@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Copyright 2008 Autentia Real Business Solutions S.L.
-    
-    This file is part of Autentia WUIJA.
-    
-    Autentia WUIJA is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, version 3 of the License.
-    
-    Autentia WUIJA is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    
-    You should have received a copy of the GNU Lesser General Public License
-    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
-
--->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -55,7 +35,7 @@
 		<dependency>
 			<groupId>com.autentia.common.dependencies</groupId>
 			<artifactId>autentia-dependenciesICEfaces</artifactId>
-			<version>1.8.1</version>
+			<version>${autentia.dependenciesICEfaces.version}</version>
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
