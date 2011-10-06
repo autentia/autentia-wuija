@@ -59,9 +59,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:svn:https://autentia.no-ip.org/svn/autentia/trunk/autentia-wuija-parent</connection>
-		<developerConnection>scm:svn:https://autentia.no-ip.org/svn/autentia/trunk/autentia-wuija-parent</developerConnection>
-		<url>https://autentia.no-ip.org/svn/autentia/trunk/autentia-wuija-parent/</url>
+		<connection>scm:git:git://github.com/autentia/autentia-wuija.git</connection>
+		<developerConnection>scm:git:git@github.com:autentia/autentia-wuija.git</developerConnection>
+		<url>https://github.com/autentia/autentia-wuija</url>
 	</scm>
 	
 	<build>
