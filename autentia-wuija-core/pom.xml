@@ -15,7 +15,7 @@
     GNU Lesser General Public License for more details.
     
     You should have received a copy of the GNU Lesser General Public License
-    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+    along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses />.
 
 -->
 
@@ -25,12 +25,12 @@
 	<parent>
 		<groupId>com.autentia.wuija</groupId>
 		<artifactId>autentia-wuija-parent</artifactId>
-		<version>1.36-SNAPSHOT</version>
+		<version>1.36</version>
 	</parent>
 	
 	<groupId>com.autentia.wuija</groupId>
 	<artifactId>autentia-wuija-core</artifactId>
-	<version>1.36-SNAPSHOT</version>
+	<version>1.36</version>
 	
 	<name>autentia-wuija-core</name>
 	<url>${autentia.site.url}/${project.parent.artifactId}/${project.artifactId}</url>
