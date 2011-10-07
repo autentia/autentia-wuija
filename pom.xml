@@ -107,16 +107,6 @@
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.1</version>
-				<configuration>
-					<!--
-						This is a 2.0 beta 6 bug. By default the goals are 'clean verify', so the modules are not installed, so the
-						dependencies between modules are not met. With this configuration we force the module installation.
-					-->
-					<preparationGoals>clean install</preparationGoals>
-					<username>${autentia.scm.username}</username>
-					<password>${autentia.scm.password}</password>
-					<tagBase>${autentia.scm.url}/autentia/tags</tagBase>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
