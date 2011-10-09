@@ -548,4 +548,9 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 			}
 		});
 	}
+
+	@Override
+	public <T> Pair<List<T>, Long> findAndCount(String hql, String countHql, int firstResult, int maxResults) {
+		return findAndCount(hql, countHql, firstResult, maxResults,new Object[0]);
+	}
 }
