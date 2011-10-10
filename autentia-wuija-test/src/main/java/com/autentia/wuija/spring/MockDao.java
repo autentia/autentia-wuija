@@ -263,8 +263,7 @@ public class MockDao implements Dao {
 	}
 
 	@Override
-	public <T> Pair<List<T>, Long> findAndCount(String hql, String countHql, int firstResult, int maxResults) {
-		// TODO Auto-generated method stub
+	public <T> Pair<List<T>, Long> findAndCount(String hql, String countHql, int firstResult, int maxResults,Object... values) {
 		return null;
 	}
 

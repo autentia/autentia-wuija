@@ -163,7 +163,7 @@ public interface Dao {
 	<T> Pair<List<T>, Long> findAndCount(EntityCriteria entityCriteria, int firstResult, int maxResults);
 	
 	
-	<T> Pair<List<T>, Long> findAndCount(String hql,String countHql, int firstResult, int maxResults);
+	<T> Pair<List<T>, Long> findAndCount(String hql,String countHql, int firstResult, int maxResults,Object... params);
 
 	/**
 	 * Hace una búsqueda según la consulta que se pasa como parámetro. También devuelve el número total de registros.

@@ -200,7 +200,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 		return pair;
 	}
 
-	private <T> Pair<List<T>, Long> findAndCount(String hql, String countHql, int firstResult, int maxResults,
+	public <T> Pair<List<T>, Long> findAndCount(String hql, String countHql, int firstResult, int maxResults,
 			Object... values) {
 		final HibernateCallback countQueryCallback = createHibernateCallbackWithHql(countHql, 0, 0, values);
 		final HibernateCallback queryCallback = createHibernateCallbackWithHql(hql, firstResult, maxResults, values);
@@ -547,10 +547,5 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				return query.executeUpdate();
 			}
 		});
-	}
-
-	@Override
-	public <T> Pair<List<T>, Long> findAndCount(String hql, String countHql, int firstResult, int maxResults) {
-		return findAndCount(hql, countHql, firstResult, maxResults,new Object[0]);
 	}
 }

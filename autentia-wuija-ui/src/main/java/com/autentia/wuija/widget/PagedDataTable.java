@@ -80,6 +80,10 @@ public class PagedDataTable<T> extends JsfWidget {
 	
 	private boolean deleteEntitiesMode;
 	
+	private String msgDeletedEntity;
+	
+	private String msgTitleDeletedEntity;
+	
 	/**
 	 * Sólo para usar desde un binding en la jspx. No usar nunca directamente.
 	 * 
@@ -367,5 +371,26 @@ public class PagedDataTable<T> extends JsfWidget {
 		fireEvent(event);
 	}
 
+	
+	public String getMsgDeletedEntity() {
+		return msgDeletedEntity;
+	}
+
+	
+	public void setMsgDeletedEntity(String msgDeletedEntity) {
+		this.msgDeletedEntity = msgDeletedEntity;
+	}
+
+	
+	public String getMsgTitleDeletedEntity() {
+		return msgTitleDeletedEntity;
+	}
+
+	
+	public void setMsgTitleDeletedEntity(String msgTitleDeletedEntity) {
+		this.msgTitleDeletedEntity = msgTitleDeletedEntity;
+	}
+
+	
 
 }
