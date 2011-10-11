@@ -101,6 +101,7 @@
 				<ui:param name="dataTableId" value="#{widget.id}" />
 				<ui:param name="showPaginator" value="#{widget.showPaginator}" />
 				<ui:param name="jsfDataPaginator" value="#{widget.jsfDataPaginator}" />
+				<ui:param name="paginatorId" value="#{widget.id}" />
 			</ui:decorate>
 			<!--
 			<h:outputText value="#{widget.allSelected}"/>
