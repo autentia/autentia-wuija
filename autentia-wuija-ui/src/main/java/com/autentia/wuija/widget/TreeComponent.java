@@ -37,6 +37,7 @@ public class TreeComponent extends JsfWidget {
 	private boolean modalRendered = true;
 
 	public TreeComponent(MessageSourceAccessor messageSourceAccesor, String name, String jsonString) {
+		super();
 		this.msa = messageSourceAccesor;
 
 		final String localizedName = msa.getMessage(name);

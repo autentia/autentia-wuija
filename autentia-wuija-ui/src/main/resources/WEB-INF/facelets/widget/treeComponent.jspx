@@ -32,7 +32,7 @@
 
 
 		<ice:panelPopup id="#{widget.modalPopUpId}" dragable="false"
-			modal="true" autoCentre="true" autoPosition="manual"
+			modal="true" autoCentre="false"
 			visible="#{widget.modalRendered}" rendered="#{widget.modalRendered}"
 			style="width:770px; height: 600px;">
 
