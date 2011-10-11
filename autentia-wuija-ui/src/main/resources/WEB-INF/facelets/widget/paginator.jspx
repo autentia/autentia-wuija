@@ -41,27 +41,27 @@
 				<ice:dataPaginator id="paginator_#{paginatorId}" for="#{dataTableId}" rendered="#{showPaginator}" fastStep="3" paginator="true"
 					paginatorMaxPages="4" immediate="true" binding="#{jsfDataPaginator}">
 					<f:facet name="first">
-						<ice:graphicImage id="firstpage_1" url="/xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;"
+						<ice:graphicImage id="firstpage_1_#{paginatorId}" url="/xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;"
 							title="#{msg['dataScrolling.firstpage']}" />
 					</f:facet>
 					<f:facet name="last">
-						<ice:graphicImage id="lastpage_1" url="/xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;"
+						<ice:graphicImage id="lastpage_1_#{paginatorId}" url="/xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;"
 							title="#{msg['dataScrolling.lastpage']}" />
 					</f:facet>
 					<f:facet name="previous">
-						<ice:graphicImage id="previouspage_1" url="/xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;"
+						<ice:graphicImage id="previouspage_1_#{paginatorId}" url="/xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;"
 							title="#{msg['dataScrolling.previouspage']}" />
 					</f:facet>
 					<f:facet name="next">
-						<ice:graphicImage id="nextpage_1" url="/xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;"
+						<ice:graphicImage id="nextpage_1_#{paginatorId}" url="/xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;"
 							title="#{msg['dataScrolling.nextpage']}" />
 					</f:facet>
 					<f:facet name="fastforward">
-						<ice:graphicImage id="fastforward_1" url="/xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;"
+						<ice:graphicImage id="fastforward_1_#{paginatorId}" url="/xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;"
 							title="#{msg['dataScrolling.fastforward']}" />
 					</f:facet>
 					<f:facet name="fastrewind">
-						<ice:graphicImage id="fastrewind_1" url="/xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;"
+						<ice:graphicImage id="fastrewind_1_#{paginatorId}" url="/xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;"
 							title="#{msg['dataScrolling.fastbackward']}" />
 					</f:facet>
 				</ice:dataPaginator>
