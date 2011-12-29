@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<artifactId>autentia-wuija-parent</artifactId>
 		<groupId>com.autentia.wuija</groupId>
 		<version>1.37-SNAPSHOT</version>
 	</parent>
-	
+
 	<groupId>com.autentia.wuija</groupId>
 	<artifactId>autentia-wuija-ui</artifactId>
 	<version>1.37-SNAPSHOT</version>
@@ -21,13 +22,13 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>autentia-wuija-core</artifactId>
 		</dependency>
-		
+
 		<!-- ========= Spring Web MVC ========= -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-		
+
 		<!-- ========= ICEfaces ========= -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
@@ -50,23 +51,29 @@
 			<version>1.1</version>
 		</dependency>
 
-		<!--		<dependency>-->
+		<!-- <dependency> -->
 		<!-- Required only if outputChart component used -->
-		<!--			<groupId>net.sf.jcharts</groupId>-->
-		<!--			<artifactId>krysalis-jCharts</artifactId>-->
-		<!--			<version>1.0.0-alpha-1</version>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
+		<!-- <groupId>net.sf.jcharts</groupId> -->
+		<!-- <artifactId>krysalis-jCharts</artifactId> -->
+		<!-- <version>1.0.0-alpha-1</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
 		<!-- Required only if component security features are used -->
-		<!--			<groupId>org.acegisecurity</groupId>-->
-		<!--			<artifactId>acegi-security</artifactId>-->
-		<!--			<version>1.0.7</version>-->
-		<!--		</dependency>-->
+		<!-- <groupId>org.acegisecurity</groupId> -->
+		<!-- <artifactId>acegi-security</artifactId> -->
+		<!-- <version>1.0.7</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.icefaces</groupId>
 			<artifactId>icefaces</artifactId>
 			<version>1.8.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>el-api</artifactId>
+					<groupId>javax.el</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.icefaces</groupId>
@@ -79,6 +86,12 @@
 			<groupId>org.icefaces</groupId>
 			<artifactId>icefaces-facelets</artifactId>
 			<version>1.8.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>el-api</artifactId>
+					<groupId>javax.el</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- ==== Una implementación de JSF ==== -->
@@ -93,7 +106,8 @@
 			<version>1.2_12</version> <!-- Los de ICEFaces usan la 1.2_04-b10-p01 -->
 		</dependency>
 
-		<!-- Otras librerias que vienen en el pdf de la guía del desarrollador: xercesImpl.jar, xml-apis.jar,  -->
+		<!-- Otras librerias que vienen en el pdf de la guía del desarrollador: 
+			xercesImpl.jar, xml-apis.jar, -->
 
 		<!-- ========= Others ========= -->
 		<dependency>
@@ -103,7 +117,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>mc-release</id>
