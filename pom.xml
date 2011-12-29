@@ -132,15 +132,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<!--
-		<extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh</artifactId>
-        <version>1.0-beta-7</version>
-      </extension>
-    </extensions>
-	-->
 	</build> 
 
 	<reporting>
@@ -200,37 +191,6 @@
 		</plugins>
 	</reporting>
 	
-	<!--	<profiles>-->
-	<!--		<profile>-->
-	<!--			<id>autentia.environment</id>-->
-	<!--			<activation>-->
-	<!--				<property>			-->
-	<!--					<name>!autentia.environment.off</name>-->
-	<!--				</property>-->
-	<!--			</activation>-->
-	<!--			<reporting>-->
-	<!--				<plugins>-->
-	<!--					<plugin>-->
-	<!--						<groupId>org.apache.maven.plugins</groupId>-->
-	<!--						<artifactId>maven-changelog-plugin</artifactId>-->
-	<!--						<configuration>-->
-	<!--							<type>date</type>-->
-	<!--							<dates>-->
-	<!-- WARNING !!! this dates have to be set manually each time a versión is released. -->
-	<!-- You have to set the day to the day after you released the version. -->
-	<!--								<date implementation="java.lang.String">2008-12-11</date>  1.2 -->
-	<!--								<date implementation="java.lang.String">2008-12-05</date>  1.1 -->
-	<!--								<date implementation="java.lang.String">2008-11-06</date>  1.0 -->
-	<!--								<date implementation="java.lang.String">2008-08-21</date>  Share project -->
-	<!--							</dates>-->
-	<!--							<dateFormat>yyyy-MM-dd</dateFormat>-->
-	<!--						</configuration>-->
-	<!--					</plugin>-->
-	<!--				</plugins>-->
-	<!--			</reporting>-->
-	<!--		</profile>-->
-	<!--	</profiles>-->
-
 	<distributionManagement>
 		<repository>
 			<id>autentia-repository</id>
@@ -249,7 +209,6 @@
 		<compileSource>1.6</compileSource>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<autentia.dependenciesICEfaces.version>1.8.2</autentia.dependenciesICEfaces.version> 
 		<spring.version>2.5.6.SEC01</spring.version>
 	</properties>
 

@@ -33,10 +33,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.autentia.common.dependencies</groupId>
-			<artifactId>autentia-dependenciesICEfaces</artifactId>
-			<version>${autentia.dependenciesICEfaces.version}</version>
-			<type>pom</type>
+			<groupId>org.icefaces</groupId>
+			<artifactId>icefaces-facelets</artifactId>
+			<version>1.8.2</version>
 			<scope>provided</scope>
 		</dependency>
 				

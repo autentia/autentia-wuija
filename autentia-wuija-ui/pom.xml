@@ -30,18 +30,71 @@
 		
 		<!-- ========= ICEfaces ========= -->
 		<dependency>
-			<groupId>com.autentia.common.dependencies</groupId>
-			<artifactId>autentia-dependenciesICEfaces</artifactId>
-			<version>${autentia.dependenciesICEfaces.version}</version>
-			<type>pom</type>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.el</groupId>
-					<artifactId>el-api</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging-api</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!--		<dependency>-->
+		<!-- Required only if outputChart component used -->
+		<!--			<groupId>net.sf.jcharts</groupId>-->
+		<!--			<artifactId>krysalis-jCharts</artifactId>-->
+		<!--			<version>1.0.0-alpha-1</version>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!-- Required only if component security features are used -->
+		<!--			<groupId>org.acegisecurity</groupId>-->
+		<!--			<artifactId>acegi-security</artifactId>-->
+		<!--			<version>1.0.7</version>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.icefaces</groupId>
+			<artifactId>icefaces</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.icefaces</groupId>
+			<artifactId>icefaces-comps</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+
+		<!-- ==== Para usar Facelets ==== -->
+		<dependency>
+			<groupId>org.icefaces</groupId>
+			<artifactId>icefaces-facelets</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+
+		<!-- ==== Una implementación de JSF ==== -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>1.2_12</version> <!-- Los de ICEFaces usan la 1.2_04-b10-p01 -->
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>1.2_12</version> <!-- Los de ICEFaces usan la 1.2_04-b10-p01 -->
+		</dependency>
+
+		<!-- Otras librerias que vienen en el pdf de la guía del desarrollador: xercesImpl.jar, xml-apis.jar,  -->
+
 		<!-- ========= Others ========= -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
