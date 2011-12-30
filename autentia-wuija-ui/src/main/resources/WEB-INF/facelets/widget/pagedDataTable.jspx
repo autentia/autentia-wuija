@@ -74,6 +74,8 @@
 				</c:forEach>
 				
 				<c:if test="#{widget.deleteEntitiesMode}">
+				<ui:insert name="deleteEntities"> <!-- Se añade para estabilizar 
+				el datatable de collectedLines para la liberacion de la version 1.48-->
 					<ice:column styleClass="multipleSelectionMode">
 		        		<f:facet name="header">
 		            		<ice:outputText value=""/>
@@ -93,6 +95,7 @@
 							</ice:commandButton>
 											
 		    		</ice:column>
+		    		</ui:insert>
 				</c:if>
 				
 			</ice:dataTable>
