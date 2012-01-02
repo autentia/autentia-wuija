@@ -19,9 +19,13 @@
 
 -->
 
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:tnt="http://www.autentia.com/frmwrk/component">
 
 	<ui:component>
@@ -31,31 +35,42 @@
 				<tnt:widget childWidget="#{widget.csvExport}" />
 			</div>
 
-			<ice:dataTable id="#{widget.id}" var="entity" value="#{widget.entities}" binding="#{widget.jsfDataTable}"
-				rows="#{widget.pageSize}" sortColumn="#{widget.sortColumn}" sortAscending="#{widget.sortAscending}" resizable="true"
+			<ice:dataTable id="#{widget.id}" var="entity"
+				value="#{widget.entities}" binding="#{widget.jsfDataTable}"
+				rows="#{widget.pageSize}" sortColumn="#{widget.sortColumn}"
+				sortAscending="#{widget.sortAscending}" resizable="true"
 				styleClass="dataTableListWidget">
 
 				<c:if test="#{widget.multipleSelectionMode}">
 					<ice:column styleClass="multipleSelectionMode">
 						<f:facet name="header">
-							<ice:selectBooleanCheckbox id="selectAllEntities" value="#{widget.selectAllEntities}" partialSubmit="true" 
-								immediate="true" valueChangeListener="#{widget.selectAllEntitiesListener}" /> 
+							<ice:selectBooleanCheckbox id="selectAllEntities"
+								value="#{widget.selectAllEntities}" partialSubmit="true"
+								immediate="true"
+								valueChangeListener="#{widget.selectAllEntitiesListener}" />
 						</f:facet>
-						<ice:selectBooleanCheckbox value="#{widget.entitiesSelected[entity]}" partialSubmit="true" 
-							immediate="true" valueChangeListener="#{widget.selectEntityListener}"/>
+						<ice:selectBooleanCheckbox
+							value="#{widget.entitiesSelected[entity]}" partialSubmit="true"
+							immediate="true"
+							valueChangeListener="#{widget.selectEntityListener}" />
 					</ice:column>
 				</c:if>
 
-				<c:forEach var="property" items="#{widget.properties}" varStatus="loopStatus">
+				<c:forEach var="property" items="#{widget.properties}"
+					varStatus="loopStatus">
 					<ice:column>
 
 						<c:if test="#{loopStatus.first and widget.selectable}">
-							<ice:rowSelector multiple="false" selectionAction="#{widget.selectionAction}" immediate="true" toggleOnInput="false"/>
+							<ice:rowSelector multiple="false"
+								selectionAction="#{widget.selectionAction}" immediate="true"
+								toggleOnInput="false" />
 						</c:if>
 						<f:facet name="header">
 							<c:choose>
 								<c:when test="#{widget.sortable}">
-									<ice:commandSortHeader columnName="#{property.firstPropertyName}" actionListener="#{widget.sortActionListener}">
+									<ice:commandSortHeader
+										columnName="#{property.firstPropertyName}"
+										actionListener="#{widget.sortActionListener}">
 										<ice:outputText value="#{msg[property.labelId]}" />
 									</ice:commandSortHeader>
 								</c:when>
@@ -72,32 +87,20 @@
 						</tnt:widget>
 					</ice:column>
 				</c:forEach>
-				
-				<c:if test="#{widget.deleteEntitiesMode}">
-				<ui:insert name="deleteEntities"> <!-- Se añade para estabilizar 
-				el datatable de collectedLines para la liberacion de la version 1.48-->
-					<ice:column styleClass="multipleSelectionMode">
-		        		<f:facet name="header">
-		            		<ice:outputText value=""/>
-		        		</f:facet>
-							<ice:commandButton 	action="#{widget.deleteSelectedEntity}" 
-												image="/wija/css/img/icons/16/cancel.png" 	
-												type="submit" panelConfirmation="deletePanelConfirmation"
-												immediate="true" rendered="#{entity.eliminable}">
-							
-							<ice:panelConfirmation id="deletePanelConfirmation"
-								autoCentre="true" acceptLabel="#{msg['button.yes']}"
-								cancelLabel="#{msg['button.no']}"
-								title="#{widget.msgTitleDeletedEntity}"
-								message="#{widget.msgDeletedEntity}"
-								draggable="false" style="width:295px;" rendered="#{entity.eliminable}"/>
-							
-							</ice:commandButton>
-											
-		    		</ice:column>
-		    		</ui:insert>
-				</c:if>
-				
+
+				<ui:insert name="deleteEntitiesColumn">
+					<c:if test="#{widget.deleteEntitiesMode}">
+						<ice:column styleClass="multipleSelectionMode">
+							<f:facet name="header">
+								<ice:outputText value="" />
+							</f:facet>
+							<ice:commandButton action="#{widget.deleteSelectedEntity}"
+								image="/wija/css/img/icons/16/cancel.png" type="submit"
+								immediate="true" />
+						</ice:column>
+					</c:if>
+				</ui:insert>
+
 			</ice:dataTable>
 
 			<ui:decorate template="./paginator.jspx">
