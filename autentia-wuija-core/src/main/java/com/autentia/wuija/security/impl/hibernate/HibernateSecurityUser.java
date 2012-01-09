@@ -108,21 +108,14 @@ public class HibernateSecurityUser implements SecurityUser, Expirable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (!(obj instanceof HibernateSecurityUser)) {
 			return false;
 		}
-		try {
-			final HibernateSecurityUser other = (HibernateSecurityUser)obj;
-			final EqualsBuilder equalsBuilder = new EqualsBuilder();
-			equalsBuilder.append(this.getUsername(), other.getUsername());
-			equalsBuilder.append(this.getPassword(), other.getPassword());
-			return equalsBuilder.isEquals();
-		} catch (Exception e) {
-			return false;
-		}
+		final HibernateSecurityUser other = (HibernateSecurityUser)obj;
+		final EqualsBuilder equalsBuilder = new EqualsBuilder();
+		equalsBuilder.append(this.getUsername(), other.getUsername());
+		equalsBuilder.append(this.getPassword(), other.getPassword());
+		return equalsBuilder.isEquals();
 	}
 
 	/**

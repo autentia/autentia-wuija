@@ -87,7 +87,6 @@
 						</tnt:widget>
 					</ice:column>
 				</c:forEach>
-
 				<ui:insert name="deleteEntitiesColumn">
 					<c:if test="#{widget.deleteEntitiesMode}">
 						<ice:column styleClass="multipleSelectionMode">
@@ -100,6 +99,7 @@
 						</ice:column>
 					</c:if>
 				</ui:insert>
+
 
 			</ice:dataTable>
 
