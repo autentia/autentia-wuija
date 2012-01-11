@@ -87,8 +87,8 @@
 						</tnt:widget>
 					</ice:column>
 				</c:forEach>
-				<ui:insert name="deleteEntitiesColumn">
-					<c:if test="#{widget.deleteEntitiesMode}">
+				<c:if test="#{widget.deleteEntitiesMode}">
+					<ui:insert name="deleteEntitiesColumn">
 						<ice:column styleClass="multipleSelectionMode">
 							<f:facet name="header">
 								<ice:outputText value="" />
@@ -97,8 +97,8 @@
 								image="/wija/css/img/icons/16/cancel.png" type="submit"
 								immediate="true" />
 						</ice:column>
-					</c:if>
-				</ui:insert>
+					</ui:insert>
+				</c:if>
 
 
 			</ice:dataTable>
@@ -109,9 +109,6 @@
 				<ui:param name="jsfDataPaginator" value="#{widget.jsfDataPaginator}" />
 				<ui:param name="paginatorId" value="#{widget.id}" />
 			</ui:decorate>
-			<!--
-			<h:outputText value="#{widget.allSelected}"/>
-			-->
 		</ice:panelGroup>
 	</ui:component>
 </jsp:root>
