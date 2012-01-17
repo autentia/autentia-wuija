@@ -35,6 +35,8 @@ public class OperationalTrace {
 
 	private static final int STRING2_MAX_LENGTH = 255;
 
+	
+	
 	@Id
 	@GeneratedValue
 	private Integer id;
