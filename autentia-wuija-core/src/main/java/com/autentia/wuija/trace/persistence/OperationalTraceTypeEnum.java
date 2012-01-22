@@ -9,6 +9,7 @@
 package com.autentia.wuija.trace.persistence;
 
 public enum OperationalTraceTypeEnum {
+	ASSOCIATE_IMAGES_WITH_PRODUCTS,
 	ASSOCIATE_IMAGE_WITH_PRODUCTS,
 	DISASSOCIATE_IMAGE_WITH_PRODUCTS,
 	ASSOCIATE_LOGO_WITH_PRODUCTS,
