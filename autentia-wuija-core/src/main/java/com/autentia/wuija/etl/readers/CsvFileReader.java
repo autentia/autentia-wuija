@@ -38,7 +38,7 @@ public class CsvFileReader {
 	private static final char DELIMITER = ';';
 
 	/** Encoding for reading (default value: ISO-8859-1) */
-	private static final String ENCODING = "ISO-8859-1";
+	private static final String ENCODING = "WINDOWS-1252";
 
 	/** Flag to indicate if exists a headers row to skip in the file (default value: true) */
 	private static final boolean HEADER_ROW_EXISTS = true;
