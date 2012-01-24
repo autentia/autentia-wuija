@@ -25,12 +25,12 @@
 	<parent>
 		<groupId>com.autentia.wuija</groupId>
 		<artifactId>autentia-wuija-parent</artifactId>
-		<version>1.38-SNAPSHOT</version>
+		<version>1.38</version>
 	</parent>
 	
 	<groupId>com.autentia.wuija</groupId>
 	<artifactId>autentia-wuija-core</artifactId>
-	<version>1.38-SNAPSHOT</version>
+	<version>1.38</version>
 	
 	<name>autentia-wuija-core</name>
 	<url>${autentia.site.url}/${project.parent.artifactId}/${project.artifactId}</url>
