@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>com.autentia.wuija</groupId>
 		<artifactId>autentia-wuija-parent</artifactId>
-		<version>1.38</version>
+		<version>1.39-SNAPSHOT</version>
 	</parent>
 	
 	<groupId>com.autentia.wuija</groupId>
 	<artifactId>autentia-wuija-util</artifactId>
-	<version>1.38</version>
+	<version>1.39-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
 	<name>autentia-wuija-util</name>
