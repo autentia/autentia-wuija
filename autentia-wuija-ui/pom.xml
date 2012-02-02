@@ -5,12 +5,12 @@
 	<parent>
 		<artifactId>autentia-wuija-parent</artifactId>
 		<groupId>com.autentia.wuija</groupId>
-		<version>1.39-SNAPSHOT</version>
+		<version>1.39</version>
 	</parent>
 
 	<groupId>com.autentia.wuija</groupId>
 	<artifactId>autentia-wuija-ui</artifactId>
-	<version>1.39-SNAPSHOT</version>
+	<version>1.39</version>
 
 	<name>autentia-wuija-ui</name>
 	<url>${autentia.site.url}/${project.parent.artifactId}/${project.artifactId}</url>
