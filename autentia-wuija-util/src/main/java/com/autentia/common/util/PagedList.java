@@ -184,6 +184,15 @@ public class PagedList<T> extends AbstractList<T> {
 	public int getPageSize() {
 		return pageSize;
 	}
+	
+	
+	/**
+	 * Elementos cargados por pagina
+	 * @return
+	 */
+	public List<T> getLoadedElements() {
+		return loadedElements;
+	}
 
 	/**
 	 * Fija el nuevo tamaño de página e invalida el contenido actual para forzar la recarga de la página.
