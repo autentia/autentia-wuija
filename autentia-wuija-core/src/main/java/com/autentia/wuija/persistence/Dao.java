@@ -421,4 +421,18 @@ public interface Dao {
 	
 	void updateByNativeSQL(final String queryString, final Object... values);
 
+	/**
+	 * Hace una búsqueda usando la consulta cuyo nombre pasa como parámetro. La consulta puede tener parámetros del tipo lista y estos
+	 * se sustituyen por nombre con lo que se pasan como parámetros.Por defecto el nombre de los parametros es list más la posición del
+	 * mismo. Por ejemplo la lista pasada en la primera posición se llamaría list0 y asi sucesivamente con el resto de listas pasadas
+	 * como parametro
+	 * <p>
+	 * Es como llamar a <code>findByNamedQuery(queryName, 0, 0, values)</code>.
+	 * 
+	 * @param <T> el tipo de objeto que se va a devolver dentro de la lista.
+	 * @param namedQuery nombre de la namedQuery que se ejecutará.
+	 * @param values las valores que se usarán como parámetros de la consulta.
+	 */
+	<T>List<T> findByNamedQueryWithListParameters(String namedQuery, Object... values);
+		
 }

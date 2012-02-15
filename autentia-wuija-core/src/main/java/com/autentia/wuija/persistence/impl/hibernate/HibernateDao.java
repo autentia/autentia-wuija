@@ -294,7 +294,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 	private <T> List<T> prepareFindByQuery(Query query, int firstResult, int maxResults, Object... values) {
 		setPagination(query, firstResult, maxResults);
 		for (int i = 0; i < values.length; i++) {
-			query.setParameter(i, values[i]);
+				query.setParameter(i, values[i]);
 		}
 		return query.list();
 	}
@@ -547,5 +547,19 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				return query.executeUpdate();
 			}
 		});
+	}
+
+	@Override
+	public <T> List<T> findByNamedQueryWithListParameters(String namedQuery, Object... values) {
+		final Query query = getSession().getNamedQuery(namedQuery);
+		return prepareFindByQueryWithListParameters(query, 0, 0, values);
+	}
+
+	private <T> List <T> prepareFindByQueryWithListParameters(Query query, int firstResult, int maxResults, Object[] values) {
+		setPagination(query, firstResult, maxResults);
+		for (int i = 0; i < values.length; i++) {
+				query.setParameterList("list"+i, (Collection) values[i]);
+		}
+		return query.list();
 	}
 }

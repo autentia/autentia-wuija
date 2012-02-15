@@ -267,4 +267,9 @@ public class MockDao implements Dao {
 		return null;
 	}
 
+	@Override
+	public <T> List<T> findByNamedQueryWithListParameters(String namedQuery, Object... values) {
+		return null;
+	}
+
 }
