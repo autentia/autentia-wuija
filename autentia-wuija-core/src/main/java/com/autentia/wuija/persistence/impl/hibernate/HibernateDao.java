@@ -558,7 +558,12 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 	private <T> List <T> prepareFindByQueryWithListParameters(Query query, int firstResult, int maxResults, Object[] values) {
 		setPagination(query, firstResult, maxResults);
 		for (int i = 0; i < values.length; i++) {
+			if (values[i] instanceof List){
 				query.setParameterList("list"+i, (Collection) values[i]);
+			}else{
+				query.setParameter("list"+i, values[i]);
+			}
+				
 		}
 		return query.list();
 	}
