@@ -272,4 +272,11 @@ public class MockDao implements Dao {
 		return null;
 	}
 
+	@Override
+	public <T> Pair<List<T>, Long> findAndCountByNamedQueryWithInStatements(String queryName, String countQueryName,
+			int firstResult, int maxResults, Object... params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,19 +1,10 @@
 /**
- * Copyright 2008 Autentia Real Business Solutions S.L.
- * 
- * This file is part of Autentia WUIJA.
- * 
- * Autentia WUIJA is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, version 3 of the License.
- * 
- * Autentia WUIJA is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public License
- * along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright 2008 Autentia Real Business Solutions S.L. This file is part of Autentia WUIJA. Autentia WUIJA is free software:
+ * you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation, version 3 of the License. Autentia WUIJA is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details. You should have received a copy of the GNU Lesser General Public
+ * License along with Autentia WUIJA. If not, see <http://www.gnu.org/licenses/>.
  */
 
 package com.autentia.wuija.persistence.impl.hibernate;
@@ -25,8 +16,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.EntityNotFoundException;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
@@ -61,7 +50,8 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 		return new HibernateCallback() {
 
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
 				final Query query = session.createQuery(hql);
 				return prepareFindByQuery(query, firstResult, maxResults, values);
 			}
@@ -73,7 +63,8 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 		return new HibernateCallback() {
 
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
 				final Query query = session.getNamedQuery(namedQuery);
 				return prepareFindByQuery(query, firstResult, maxResults, values);
 			}
@@ -171,14 +162,14 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 		return pair;
 	}
-	
+
 	private <T> Pair<List<T>, Long> findAndCountScalarQuery(HibernateCallback queryCallback, String countHql,
 			int maxResults, Object[] values) {
 		final Pair<List<T>, Long> pair = new Pair<List<T>, Long>();
 
 		// Si hay paginación, hay que hacer un select count para saber el número de registros totales.
 		if (maxResults > 0) {
-			final Long rowCount = Long.valueOf(getHibernateTemplate().find(countHql,values).size());
+			final Long rowCount = Long.valueOf(getHibernateTemplate().find(countHql, values).size());
 			pair.setRight(rowCount);
 
 			// Pequeño shortcut: si no hay resultados, ni siquiera se hace la búsqueda.
@@ -206,12 +197,12 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 		final HibernateCallback queryCallback = createHibernateCallbackWithHql(hql, firstResult, maxResults, values);
 		return findAndCount(queryCallback, countQueryCallback, maxResults);
 	}
-	
-	private <T> Pair<List<T>, Long> findAndCountScalarQuery(String hql, String countHql, int firstResult, int maxResults,
-			Object... values) {
+
+	private <T> Pair<List<T>, Long> findAndCountScalarQuery(String hql, String countHql, int firstResult,
+			int maxResults, Object... values) {
 
 		final HibernateCallback queryCallback = createHibernateCallbackWithHql(hql, firstResult, maxResults, values);
-		return findAndCountScalarQuery(queryCallback, countHql, maxResults,values);
+		return findAndCountScalarQuery(queryCallback, countHql, maxResults, values);
 	}
 
 	public <T> Pair<List<T>, Long> findAndCountByNamedQuery(String queryName, String countQueryName, int firstResult,
@@ -294,7 +285,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 	private <T> List<T> prepareFindByQuery(Query query, int firstResult, int maxResults, Object... values) {
 		setPagination(query, firstResult, maxResults);
 		for (int i = 0; i < values.length; i++) {
-				query.setParameter(i, values[i]);
+			query.setParameter(i, values[i]);
 		}
 		return query.list();
 	}
@@ -311,15 +302,11 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 			log.trace("Results found (" + list.size() + "): " + list);
 		}
 	}
-	
-	
-	
-	
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final int firstResult,
-			final int maxResults, final List values, final Class<T> transformerClass) {
+	public <T> List<T> find(final String queryString, final int firstResult, final int maxResults, final List values,
+			final Class<T> transformerClass) {
 		final List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -329,32 +316,29 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				query.setResultTransformer(Transformers.aliasToBean(transformerClass));
 				return query.list();
 			}
-			
+
 		});
 		traceResults(list);
 		return list;
 	}
-	
-	
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final int maxResults,final List values,
+	public <T> List<T> find(final String queryString, final int maxResults, final List values,
 			final Class<T> transformerClass) {
 		return find(queryString, 0, maxResults, values, transformerClass);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final List values,
-			final Class<T> transformerClass) {
+	public <T> List<T> find(final String queryString, final List values, final Class<T> transformerClass) {
 		return find(queryString, 0, 0, values, transformerClass);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final int firstResult,
-			final int maxResults, final Map values, final Class<T> transformerClass) {
+	public <T> List<T> find(final String queryString, final int firstResult, final int maxResults, final Map values,
+			final Class<T> transformerClass) {
 		final List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -364,16 +348,12 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				query.setResultTransformer(Transformers.aliasToBean(transformerClass));
 				return query.list();
 			}
-			
+
 		});
 		traceResults(list);
 		return list;
 	}
-	
-	
-	
-	
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> List<T> find(final String queryString, final int maxResults, final Map values,
@@ -383,16 +363,14 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString,final Map values,
-			final Class<T> transformerClass) {
+	public <T> List<T> find(final String queryString, final Map values, final Class<T> transformerClass) {
 		return find(queryString, 0, 0, values, transformerClass);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final int firstResult,
-			final int maxResults, final List values) {		
-		
+	public <T> List<T> find(final String queryString, final int firstResult, final int maxResults, final List values) {
+
 		final List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -401,51 +379,46 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				setPositionalParameters(values, query);
 				return query.list();
 			}
-			
+
 		});
 		traceResults(list);
 		return list;
-		
+
 	}
-	
-	
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final int maxResults,final List values) {		
+	public <T> List<T> find(final String queryString, final int maxResults, final List values) {
 		return find(queryString, 0, maxResults, values);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString,final List values) {
+	public <T> List<T> find(final String queryString, final List values) {
 		return find(queryString, 0, 0, values);
 	}
 
-	private void setPositionalParameters(final List values,
-			final Query query) {
+	private void setPositionalParameters(final List values, final Query query) {
 		if (CollectionUtils.isNotEmpty(values)) {
 			for (int i = 0; i < values.size(); i++) {
 				query.setParameter(i, values.get(i));
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private void setNamedParameters(final Map values,
-			final Query query) {
-		
+	private void setNamedParameters(final Map values, final Query query) {
+
 		Iterator<String> it = values.keySet().iterator();
-        while (it.hasNext()) {
-            String key = it.next();            
-            query.setParameter(key, values.get(key));
-        }
+		while (it.hasNext()) {
+			String key = it.next();
+			query.setParameter(key, values.get(key));
+		}
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> find(final String queryString, final int firstResult,
-			final int maxResults, final Map values) {
+	public <T> List<T> find(final String queryString, final int firstResult, final int maxResults, final Map values) {
 		final List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -454,7 +427,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				setNamedParameters(values, query);
 				return query.list();
 			}
-			
+
 		});
 		traceResults(list);
 		return list;
@@ -469,7 +442,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 	public <T> List<T> find(final String queryString, final Map values) {
 		return find(queryString, 0, 0, values);
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findByNativeQueryTransformer(final Class<T> transformerClass, final String queryString,
@@ -490,21 +463,21 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findByNativeQueryTransformer(Class<T> transformerClass,
-			String sqlQueryString, int maxResults, Map values) {
+	public <T> List<T> findByNativeQueryTransformer(Class<T> transformerClass, String sqlQueryString, int maxResults,
+			Map values) {
 		return findByNativeQueryTransformer(transformerClass, sqlQueryString, 0, maxResults, values);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findByNativeQueryTransformer(Class<T> transformerClass,
-			String sqlQueryString, Map values) {
+	public <T> List<T> findByNativeQueryTransformer(Class<T> transformerClass, String sqlQueryString, Map values) {
 		return findByNativeQueryTransformer(transformerClass, sqlQueryString, 0, 0, values);
 	}
 
 	@Override
-	public <T> Pair<List<T>, Long> findAndCountSacalerQuery(EntityCriteria entityCriteria, int firstResult,int maxResults) {
-		
+	public <T> Pair<List<T>, Long> findAndCountSacalerQuery(EntityCriteria entityCriteria, int firstResult,
+			int maxResults) {
+
 		final String countHql = entityCriteria.toCountHqlScalarQuery();
 		final String hql = entityCriteria.toHqlScalarQuery();
 		return findAndCountScalarQuery(hql, countHql, firstResult, maxResults, entityCriteria.getHqlValues());
@@ -512,7 +485,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 	@Override
 	public Long countByNamedQuery(final String namedQuery, final Object... values) {
-		return (Long) getHibernateTemplate().execute(new HibernateCallback() {
+		return (Long)getHibernateTemplate().execute(new HibernateCallback() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				final Query query = session.getNamedQuery(namedQuery);
@@ -520,16 +493,17 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 			}
 		});
 	}
-	
-	public void deleteByNamedQuery(final String namedQuery, final Object... values){
+
+	public void deleteByNamedQuery(final String namedQuery, final Object... values) {
 		getHibernateTemplate().execute(new HibernateCallback() {
+
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				final Query query = session.getNamedQuery(namedQuery);
 				for (int i = 0; i < values.length; i++) {
 					query.setParameter(i, values[i]);
 				}
 				query.executeUpdate();
-				
+
 				return null;
 			}
 		});
@@ -555,16 +529,48 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 		return prepareFindByQueryWithListParameters(query, 0, 0, values);
 	}
 
-	private <T> List <T> prepareFindByQueryWithListParameters(Query query, int firstResult, int maxResults, Object[] values) {
+	private <T> List<T> prepareFindByQueryWithListParameters(Query query, int firstResult, int maxResults,
+			Object[] values) {
 		setPagination(query, firstResult, maxResults);
 		for (int i = 0; i < values.length; i++) {
-			if (values[i] instanceof List){
-				query.setParameterList("list"+i, (Collection) values[i]);
-			}else{
-				query.setParameter("list"+i, values[i]);
+			if (values[i] instanceof List) {
+				query.setParameterList("list" + i, (Collection)values[i]);
+			} else {
+				query.setParameter("list" + i, values[i]);
 			}
-				
+
 		}
 		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> Pair<List<T>, Long> findAndCountByNamedQueryWithInStatements(final String namedQuery,
+			final String countNamedQuery, final int firstResult, final int maxResults, final Object... params) {
+		return (Pair<List<T>, Long>)getHibernateTemplate().execute(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
+				final Query countQuery = session.getNamedQuery(countNamedQuery);
+				addParamsToQueryCheckingIfIsListType(countQuery, params);
+				final Long countResult = (Long)countQuery.list().get(0);
+				final Query query = session.getNamedQuery(namedQuery);
+				addParamsToQueryCheckingIfIsListType(query, params);
+				query.setFirstResult(firstResult);
+				query.setMaxResults(maxResults);
+				return new Pair<List<T>, Long>(query.list(), countResult);
+			}
+
+		});
+	}
+
+	private void addParamsToQueryCheckingIfIsListType(final Query query, Object[] params) {
+		for (int i=0 ; i < params.length; i++) {
+			if (params[i] instanceof Collection) {
+				query.setParameterList("param" + i, (Collection)params[i]);
+			} else {
+				query.setParameter("param" + i, params[i]);
+			}
+		}
 	}
 }

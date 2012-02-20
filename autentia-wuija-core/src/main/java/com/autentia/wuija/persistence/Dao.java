@@ -434,5 +434,29 @@ public interface Dao {
 	 * @param values las valores que se usarán como parámetros de la consulta.
 	 */
 	<T>List<T> findByNamedQueryWithListParameters(String namedQuery, Object... values);
+	
+	
+	/**
+	 * Hace una búsqueda según la consulta que se pasa como parámetro, permitiendo que haya clausulas in
+	 * en los que haya un listado como parámetro. También devuelve el número total de registros.
+	 * Esto es porque puede que sólo queramos recuperar una "ventanta" de registros, pero necesitemos saber el número
+	 * total de registros, por ejemplo para pintar una paginación.
+	 * <p>
+	 * Se puede fijar cual será el primer registro a devolver y cuantos registros como máximo se van a devolver.
+	 * <p>
+	 * En este caso se especifica tanto el nombre de la consulta para la búsueda, como el nombre de la consulta para
+	 * obtener el número de registros. Esto es necesario porque a veces no es trivial convertir la consulta de busqueda
+	 * a una consulta para obtener sólo el número de registros del resultado.
+	 * 
+	 * @param <T> el tipo de objeto que se va a devolver dentro de la lista.
+	 * @param queryName el nombre de la query que se usará para hacer la consulta.
+	 * @param countQueryName el nombre de la consulta que se usará para sacar el número de registros.
+	 * @param firstResult un número de fila, empezando a contar desde 0.
+	 * @param maxResults número máximo de filas a devolver.
+	 * @return el resultado de la consulta y el número total de registros.
+	 */
+	<T> Pair<List<T>, Long> findAndCountByNamedQueryWithInStatements(String queryName, String countQueryName, int firstResult,
+			int maxResults, Object... params);
+
 		
 }
