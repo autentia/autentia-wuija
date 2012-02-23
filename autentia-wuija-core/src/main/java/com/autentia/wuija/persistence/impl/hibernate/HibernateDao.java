@@ -564,8 +564,28 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 		});
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> Pair<List<T>, Long> findAndCountByHqlQueryWithInStatements(final String hqlQuery, final int firstResult,
+			final int maxResults, final Object... params) {
+		return (Pair<List<T>, Long>)getHibernateTemplate().execute(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
+				final Query query = session.createQuery(hqlQuery);
+				addParamsToQueryCheckingIfIsListType(query, params);
+				query.setFirstResult(firstResult);
+				query.setMaxResults(maxResults);
+				final List<T> result = query.list();
+				return new Pair<List<T>, Long>(result, Long.valueOf(result.size()));
+			}
+
+		});
+
+	}
+
 	private void addParamsToQueryCheckingIfIsListType(final Query query, Object[] params) {
-		for (int i=0 ; i < params.length; i++) {
+		for (int i = 0; i < params.length; i++) {
 			if (params[i] instanceof Collection) {
 				query.setParameterList("param" + i, (Collection)params[i]);
 			} else {
@@ -573,4 +593,5 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 			}
 		}
 	}
+
 }

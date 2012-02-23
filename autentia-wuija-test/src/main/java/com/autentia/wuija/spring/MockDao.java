@@ -279,4 +279,11 @@ public class MockDao implements Dao {
 		return null;
 	}
 
+	@Override
+	public <T> Pair<List<T>, Long> findAndCountByHqlQueryWithInStatements(String hqlQuery, int firstResult,
+			int maxResults, Object... params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
