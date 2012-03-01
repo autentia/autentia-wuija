@@ -287,7 +287,7 @@ public class MockDao implements Dao {
 	}
 
 	@Override
-	public Integer bulkUpdateWithInStatementSupport(String hqlQuery, List<?> inStatementValues) {
+	public Integer bulkUpdateWithInStatementSupport(String hqlQuery, Object... values) {
 		// TODO Auto-generated method stub
 		return null;
 	}
