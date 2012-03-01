@@ -594,4 +594,24 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 		}
 	}
 
+	@Override
+	public Integer bulkUpdateWithInStatementSupport(final String hqlQuery, final Object... values) {
+		return (Integer)getHibernateTemplate().execute(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
+				final Query query = session.createQuery(hqlQuery);
+				for (int i = 0 ; i < values.length; i++) {
+					if (values[i] instanceof List<?>) {
+						query.setParameterList("param" + i , (List<?>)values[i]);	
+					} else {
+						query.setParameter("param" + i , values[i]);
+					}
+				}
+				
+				return Integer.valueOf(query.executeUpdate());
+			}
+		});
+	}
+
 }

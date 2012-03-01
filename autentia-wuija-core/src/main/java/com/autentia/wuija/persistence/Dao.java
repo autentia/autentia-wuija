@@ -443,5 +443,7 @@ public interface Dao {
 
 	<T> Pair<List<T>, Long> findAndCountByHqlQueryWithInStatements(String hqlQuery, int firstResult, int maxResults,
 			Object... params);
+	
+	Integer bulkUpdateWithInStatementSupport(String hqlQuery, Object... values);
 
 }
