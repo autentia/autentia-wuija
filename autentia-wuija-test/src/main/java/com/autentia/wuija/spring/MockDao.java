@@ -292,4 +292,10 @@ public class MockDao implements Dao {
 		return null;
 	}
 
+	@Override
+	public <T> List<T> findByAnHqlQueryWithListParametersSupport(String hqlQuery, Object... values) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

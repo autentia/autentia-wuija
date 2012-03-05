@@ -494,6 +494,7 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 		});
 	}
 
+	@Override
 	public void deleteByNamedQuery(final String namedQuery, final Object... values) {
 		getHibernateTemplate().execute(new HibernateCallback() {
 
@@ -584,6 +585,41 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 
 	}
 
+	@Override
+	public Integer bulkUpdateWithInStatementSupport(final String hqlQuery, final Object... values) {
+		return (Integer)getHibernateTemplate().execute(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
+				final Query query = session.createQuery(hqlQuery);
+				for (int i = 0; i < values.length; i++) {
+					if (values[i] instanceof List<?>) {
+						query.setParameterList("param" + i, (List<?>)values[i]);
+					} else {
+						query.setParameter("param" + i, values[i]);
+					}
+				}
+
+				return Integer.valueOf(query.executeUpdate());
+			}
+		});
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> List<T> findByAnHqlQueryWithListParametersSupport(final String hqlQuery, final Object... values) {
+		return (List<T>)getHibernateTemplate().execute(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException {
+				final Query query = session.createQuery(hqlQuery);
+				addParamsToQueryCheckingIfIsListType(query, values);
+				return query.list();
+			}
+		});
+
+	}
+
 	private void addParamsToQueryCheckingIfIsListType(final Query query, Object[] params) {
 		for (int i = 0; i < params.length; i++) {
 			if (params[i] instanceof Collection) {
@@ -592,26 +628,6 @@ public class HibernateDao extends HibernateDaoSupport implements Dao {
 				query.setParameter("param" + i, params[i]);
 			}
 		}
-	}
-
-	@Override
-	public Integer bulkUpdateWithInStatementSupport(final String hqlQuery, final Object... values) {
-		return (Integer)getHibernateTemplate().execute(new HibernateCallback() {
-
-			@Override
-			public Object doInHibernate(Session session) throws HibernateException {
-				final Query query = session.createQuery(hqlQuery);
-				for (int i = 0 ; i < values.length; i++) {
-					if (values[i] instanceof List<?>) {
-						query.setParameterList("param" + i , (List<?>)values[i]);	
-					} else {
-						query.setParameter("param" + i , values[i]);
-					}
-				}
-				
-				return Integer.valueOf(query.executeUpdate());
-			}
-		});
 	}
 
 }

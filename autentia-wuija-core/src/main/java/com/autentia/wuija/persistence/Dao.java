@@ -443,7 +443,10 @@ public interface Dao {
 
 	<T> Pair<List<T>, Long> findAndCountByHqlQueryWithInStatements(String hqlQuery, int firstResult, int maxResults,
 			Object... params);
-	
+
+	@Transactional
 	Integer bulkUpdateWithInStatementSupport(String hqlQuery, Object... values);
+	
+	<T> List<T> findByAnHqlQueryWithListParametersSupport(String hqlQuery, Object... values);
 
 }
