@@ -227,6 +227,7 @@ public class SelectMultipleLists<T> extends JsfWidget {
 		
 		selectionLists.get(position).addAll(items);
 		allowedValuesList.removeAll(items);
+		fireEvent(new ValueChangeEvent(this, null, selectionLists.get(position)));
 	}
 
 	/**
@@ -238,6 +239,7 @@ public class SelectMultipleLists<T> extends JsfWidget {
 
 		selectionLists.get(position).removeAll(items);
 		allowedValuesList.addAll(items);
+		fireEvent(new ValueChangeEvent(this, null, selectionLists.get(position)));
 	}
 	
 	/**
@@ -248,6 +250,7 @@ public class SelectMultipleLists<T> extends JsfWidget {
 		
 		selectionLists.get(position).addAll(items);
 		allowedValuesList.removeAll(items);
+		fireEvent(new ValueChangeEvent(this, null, selectionLists.get(position)));
 	}
 
 	/**
@@ -258,6 +261,7 @@ public class SelectMultipleLists<T> extends JsfWidget {
 
 		allowedValuesList.addAll(items);
 		selectionLists.get(position).removeAll(items);
+		fireEvent(new ValueChangeEvent(this, null, selectionLists.get(position)));
 	}
 
 	public String getTitleAllowed() {
