@@ -5,7 +5,7 @@
 
 	<groupId>com.autentia.wuija</groupId>
 	<artifactId>autentia-wuija-parent</artifactId>
-	<version>1.41</version>
+	<version>1.42-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>autentia-wuija-parent</name>
