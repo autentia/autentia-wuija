@@ -298,4 +298,18 @@ public class MockDao implements Dao {
 		return null;
 	}
 
+	@Override
+	public <T> List<T> findByNativeQueryTransformerWithListParametersSupport(Class<T> transformerClass,
+			String sqlQueryString, Map values, int firstResult, int maxResults) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> List<T> findByNativeQueryTransformerWithListParametersSupport(Class<T> transformerClass,
+			String sqlQueryString, Map values) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

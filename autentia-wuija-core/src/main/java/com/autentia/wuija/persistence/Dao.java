@@ -448,5 +448,11 @@ public interface Dao {
 	Integer bulkUpdateWithInStatementSupport(String hqlQuery, Object... values);
 	
 	<T> List<T> findByAnHqlQueryWithListParametersSupport(String hqlQuery, Object... values);
+	
+	<T> List<T> findByNativeQueryTransformerWithListParametersSupport(Class<T> transformerClass, String sqlQueryString,
+			Map values, int firstResult, int maxResults);
+	
+	<T> List<T> findByNativeQueryTransformerWithListParametersSupport(Class<T> transformerClass, String sqlQueryString, Map values);
+
 
 }
